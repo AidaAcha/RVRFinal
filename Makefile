@@ -1,23 +1,26 @@
 
-rc/include -L src/lib -o main.cpp -lmingw32 -lSDL2main -lSDL2
+
 
 CC=g++
 CFLAGS=-g -I.
-DEPS = Socket.h Chat.h
-OBJ = Socket.o Chat.o
+DEPS = SDL_App.h
+OBJ = SDL_App.o
 LIBS=-lpthread
 
-%.o: %.cc $(DEPS)
+%.o: %.cpp $(DEPS)
 	$(CC) -g -c -o $@ $< $(CFLAGS)
 
-all: cs cc
+all: sdlinit sdlapp 
 
-cs: $(OBJ) ChatServer.o
+sdlinit: $(CC) -I src/include -L src/lib -o main.cpp -lmingw32 -lSDL2main -lSDL2
+# cs: $(OBJ) ChatServer.o
+# 	g++ -o $@ $^ $(CFLAGS) $(LIBS)
+
+# cc: $(OBJ) ChatClient.o
+# 	g++ -o $@ $^ $(CFLAGS) $(LIBS)
+
+sdlapp: $(OBJ) SDL_App.o
 	g++ -o $@ $^ $(CFLAGS) $(LIBS)
-
-cc: $(OBJ) ChatClient.o
-	g++ -o $@ $^ $(CFLAGS) $(LIBS)
-
 
 .PHONY: clean
 
