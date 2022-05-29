@@ -24,7 +24,6 @@ private:
     int x; int y;
     int size;
 
-    SDL_App* app;
     SDL_Texture* texture;
     SDL_Rect* rect;
 };

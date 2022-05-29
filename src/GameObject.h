@@ -9,6 +9,7 @@ struct pair
     pair(int f, int s) {first = f; second = s;};
 };
 
+class SDL_App;
 
 class GameObject {
 
@@ -16,6 +17,7 @@ public:
     enum Type {Tank, Bullet, Wall};
 
     GameObject() {};
+    GameObject(SDL_App* _sdlApp) { sdlApp = _sdlApp; };
     virtual ~GameObject() {};
     
     virtual Type getType() {return type; };
@@ -25,6 +27,7 @@ public:
 
 protected:
     Type type;
+    SDL_App* sdlApp;
 
 };
 

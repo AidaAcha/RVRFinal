@@ -1,8 +1,12 @@
 #ifndef SDLAPP_H_
 #define SDLAPP_H_
 
+#include <iostream>
+#include <vector>
+
 class SDL_Texture;
 class SDL_Renderer;
+class GameObject;
 
 class SDL_App {
 public:
@@ -20,6 +24,10 @@ public:
 
 private:
     SDL_Renderer* renderer;
+    void initGObjs();
+    void gameLoop();
+    void addGO(GameObject* go);
+    std::vector<GameObject*> gObjs;
 };
 
 #endif

@@ -5,6 +5,10 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+
+#include "GameObject.h"
+#include "Tank.h"
+
 void SDL_App::init(){
     printf("Initializing SDL.\n");
     
@@ -47,14 +51,11 @@ void SDL_App::init(){
 
     // The window is open: could enter program loop here (see SDL_PollEvent())
 
+
+
     SDL_Delay(3000);  // Pause execution for 3000 milliseconds, for example
 
-    // Close and destroy the window
-    SDL_DestroyWindow(window);
 
-    // Clean up
-    IMG_Quit();
-    SDL_Quit();
 
 }
 
@@ -86,7 +87,37 @@ void SDL_App::clearWindow(){
     SDL_RenderClear(renderer);
 }
 
+// We can add scenes instead of these if it gets bigger
+void SDL_App::initGObjs(){
+    // const char* tex = "../resources/tank.png";
+    // Tank* tank = new Tank(tex, 300,300, 100, this);
+    
+}
+
+void SDL_App::addGO(GameObject* go){
+    gObjs.push_back(go);
+}
+
+void SDL_App::gameLoop() {
+    bool exit = false;
+    while(!exit){
+        // SDL_Event event;
+        // // Handle all Events
+        // while (SDL_PollEvent(&event)) { 
+        for(auto it = gObjs.cbegin(); it != gObjs.cend(); ++it){
+            (*it)->update();
+            (*it)->render();
+        }            
+        // }
+        // //handle input
+    }
+};
+
 SDL_App::~SDL_App(){
+    for(int i = 0; i < gObjs.size(); i++)
+        delete gObjs[i];
+    gObjs.clear();
+
     SDL_DestroyRenderer(renderer);
     renderer = nullptr;
 
