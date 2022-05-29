@@ -5,7 +5,7 @@ OBJ = SDL_App.o
 LIBS= -lpthread -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
 SDLFLAGS= `sdl2-config --cflags --libs`
 
-%.o: %.cpp $(DEPS)
+%.o: %.CC $(DEPS)
 	$(CC) -g -c -o $@ $< $(CFLAGS)
 
 all: sdlapp
