@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-g -I.
-DEPS = SDL_App.h 
+DEPS = SDL_App.h
 OBJ = SDL_App.o
 LIBS= -lpthread -lSDL2 -lSDL2_mixer -lSDL2_image -lSDL2_ttf
 SDLFLAGS= `sdl2-config --cflags --libs`

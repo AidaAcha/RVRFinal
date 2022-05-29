@@ -1,6 +1,15 @@
 #ifndef GameObject_H_
 #define GameObject_H_
 
+struct pair
+{
+    int first;
+    int second;
+
+    pair(int f, int s) {first = f; second = s;};
+};
+
+
 class GameObject {
 
 public:
