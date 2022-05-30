@@ -89,8 +89,8 @@ void SDL_App::clearWindow(){
 
 // We can add scenes instead of these if it gets bigger
 void SDL_App::initGObjs(){
-    // const char* tex = "../resources/tank.png";
-    // Tank* tank = new Tank(tex, 300,300, 100, this);
+    const char* tex = "../resources/tank.png";
+    Tank* tank = new Tank(tex, 300,300, 100, this);
     
 }
 

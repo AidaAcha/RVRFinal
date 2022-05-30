@@ -16,6 +16,10 @@ void Tank::render(){
     SDL_RenderCopy(sdlApp->getRenderer(), texture, rect, &destRect);
 }
 
+void Tank::update(){
+
+}
+
 void Tank::setPosition(int x_, int y_){
     x = x_;
     y = y_;
