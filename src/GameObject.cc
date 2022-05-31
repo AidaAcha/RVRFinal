@@ -1,15 +1,18 @@
 #include "GameObject.h"
+#include <SDL2/SDL_rect.h>
+#include <SDL2/SDL_image.h>
 #include "SDL_App.h"
 
 GameObject::GameObject(Vector2 _pos, const char* _tex, int width_, int height_, SDL_App* _sdlApp)
 : pos(_pos), sdlApp(_sdlApp), width(width_), height(height_)
 {
-    tex = sdlApp->loadTexture(_tex, &width, &height);
+    int textW; int textH;
+    tex = sdlApp->loadTexture(_tex, textW, textH);
     currentFrame = new SDL_Rect();
     currentFrame->x = pos.getX();
     currentFrame->y = pos.getY();
-    currentFrame->w = width;
-    currentFrame->h = height;
+    currentFrame->w = textW;
+    currentFrame->h = textH;
 
     sdlApp->addGO(this);
 };
@@ -18,8 +21,8 @@ void GameObject::render(){
     SDL_Rect dst;
     dst.x = pos.getX();
     dst.y = pos.getY();
-    dst.w = currentFrame->w;
-    dst.h = currentFrame->h;
+    dst.w = width;
+    dst.h = height;
 
     SDL_RenderCopy(sdlApp->getRenderer(), tex, currentFrame, &dst);
 }

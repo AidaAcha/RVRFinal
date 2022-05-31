@@ -15,7 +15,7 @@ public:
 
     void init();
 
-    SDL_Texture* loadTexture(const char* text, int* width, int* height);
+    SDL_Texture* loadTexture(const char* text, int& width, int& height);
     void render(GameObject* _go);
 
     void clearWindow();

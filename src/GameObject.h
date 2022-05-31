@@ -1,11 +1,11 @@
 #ifndef GameObject_H_
 #define GameObject_H_
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 
 #include "Vector2.h"
 
 class SDL_App;
+class SDL_Rect;
+class SDL_Texture;
 
 class GameObject {
 

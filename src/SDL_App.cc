@@ -45,6 +45,9 @@ void SDL_App::init(){
 
     // Up until now everything was drawn behind the scenes.
     // This will show the new, red contents of the window.
+
+    initGObjs();
+    
     SDL_RenderPresent(renderer);
 
     printf("SDL initialized.\n");
@@ -59,7 +62,7 @@ void SDL_App::init(){
 
 }
 
-SDL_Texture* SDL_App::loadTexture(const char* text, int* width, int* height){
+SDL_Texture* SDL_App::loadTexture(const char* text, int& width, int& height){
     SDL_Surface* img = IMG_Load(text);
 
     if(!img)    printf("Error loading image: %s\n", (char const*)SDL_GetError());
@@ -68,7 +71,7 @@ SDL_Texture* SDL_App::loadTexture(const char* text, int* width, int* height){
 
     if(!texture) printf("Error creating texture: %s\n", (char const*)SDL_GetError());
 
-    *width = img->w; *height = img->h;
+    width = img->w; height = img->h;
 
     SDL_FreeSurface(img); img = nullptr;
 
@@ -94,9 +97,9 @@ void SDL_App::clearWindow(){
 
 // We can add scenes instead of these if it gets bigger
 void SDL_App::initGObjs(){
-    const char* tex = "../resources/tank.png";
-    Tank* tank = new Tank(tex, Vector2(), 32, 32, this);
-    
+    const char* tex = "./resources/tank.png";
+    Tank* tank = new Tank(tex, Vector2(), 100, 100, this);
+    tank->render();
 }
 
 void SDL_App::addGO(GameObject* go){
