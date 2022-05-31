@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include "Map.h"
 #include "SDL_App.h"
 #include "SDL_render.h"
 
@@ -19,6 +19,9 @@ void Game::initGObjs(){
     const char* tex = "./resources/Tank.png";
     Tank* tank = new Tank(tex, Vector2(), 100, 100, sdlApp);
     tank->render();
+
+    //gMapa = new Map(sdlApp);
+    //gMapa->LoadMap("mapa.txt");
 }
 
 void Game::addGO(GameObject* go){

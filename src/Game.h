@@ -8,6 +8,7 @@ class SDL_Texture;
 class SDL_Renderer;
 class GameObject;
 class SDL_App;
+class Map;
 
 class Game {
 public:
@@ -22,6 +23,7 @@ private:
     void initGObjs();
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;
+    //Map* gMapa;
 };
 
 #endif

@@ -1,33 +1,64 @@
 #include "Map.h"
 #include <fstream>
-
-Map::Map(){}
+#include "Wall.h"
 
 Map::~Map(){}
 
-void Map::LoadMap(std::string path, int sizeX, int sizeY)
+void Map::LoadMap(std::string path)
 {
     char c;
-    std::fstream mapFile;
+    int alto, ancho;
+    const char* linea;
+
+    AddTile(2,2);
+    AddTile(3,2);
+    AddTile(2,3);
+    AddTile(3,3);
+    /*std::fstream mapFile;
     mapFile.open(path);
 
-    int srcX, srcY;
+    getline(mapFile, linea);
+    alto = std::stoi(linea);
 
-    for(int y = 0; y < sizeY; y++){
-        for(int x = 0; x < sizeX; x++){
-            mapFile.get(c);
-            srcY = atoi(&c) * 32;
-            mapFile.get(c);
-            srcX = atoi(&c) * 32;
-            //addTile
-            mapFile.ignore();
+    getline(mapFile, linea);
+    ancho = std::stoi(linea);
+
+    for(int y = 0; y < alto - 1; y++){
+        getline(mapFile, linea);
+        for(int x = 0; x < linea.length() - 1; x++){
+            if(linea[x] == 1){
+                AddTile(x,y);
+            }
         }
     }
 
-    mapFile.close();
+    mapFile.close();*/
 }
 
-void Map::AddTile(int srcX, int srcY, int xpos, int ypos)
+void Map::AddTile(int xpos, int ypos)
 {
-    
-}
+    Vector2 pos(xpos, ypos);
+    Wall* muro = new Wall("./resources/Wall.png", pos, 32, 32, sdlApp);
+    muros->push_back(muro);
+
+};
+
+/*void leer_archivo(char *nombre){
+    char temp[50];
+    int cont = 0;
+    FILE *archivo;
+    archivo = fopen(nombre, "r");
+    if(archivo){
+        
+        while (!feof(archivo))
+        {
+            fgets(temp, 50, archivo);
+            cont++;
+        }
+        
+
+    }else{
+        fprintf(stderr, "No se puede abrir el archivo %s para lectura\n");
+        exit(1);
+    }
+}*/
