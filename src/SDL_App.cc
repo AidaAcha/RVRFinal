@@ -6,6 +6,7 @@
 #include <SDL2/SDL_image.h>
 
 
+#include "Game.h"
 #include "GameObject.h"
 #include "Tank.h"
 
@@ -46,19 +47,10 @@ void SDL_App::init(){
     // Up until now everything was drawn behind the scenes.
     // This will show the new, red contents of the window.
 
-    initGObjs();
-    
-    SDL_RenderPresent(renderer);
-
     printf("SDL initialized.\n");
 
-    // The window is open: could enter program loop here (see SDL_PollEvent())
-
-
-
-    SDL_Delay(3000);  // Pause execution for 3000 milliseconds, for example
-
-
+    game = new Game(this);
+    game->init();
 
 }
 
@@ -78,11 +70,6 @@ SDL_Texture* SDL_App::loadTexture(const char* text, int& width, int& height){
     return texture;
 }
 
-void SDL_App::render(GameObject* _go)
-{
-    _go->render();
-}
-
 void SDL_App::renderPresent(){
     SDL_RenderPresent(renderer);
 }
@@ -95,36 +82,8 @@ void SDL_App::clearWindow(){
     SDL_RenderClear(renderer);
 }
 
-// We can add scenes instead of these if it gets bigger
-void SDL_App::initGObjs(){
-    const char* tex = "./resources/tank.png";
-    Tank* tank = new Tank(tex, Vector2(), 100, 100, this);
-    tank->render();
-}
-
-void SDL_App::addGO(GameObject* go){
-    gObjs.push_back(go);
-}
-
-void SDL_App::gameLoop() {
-    bool exit = false;
-    while(!exit){
-        // SDL_Event event;
-        // // Handle all Events
-        // while (SDL_PollEvent(&event)) { 
-        for(auto it = gObjs.cbegin(); it != gObjs.cend(); ++it){
-            (*it)->update();
-            (*it)->render();
-        }            
-        // }
-        // //handle input
-    }
-};
-
 SDL_App::~SDL_App(){
-    for(int i = 0; i < gObjs.size(); i++)
-        delete gObjs[i];
-    gObjs.clear();
+    delete game;
 
     SDL_DestroyRenderer(renderer);
     renderer = nullptr;
