@@ -12,7 +12,7 @@ class SDL_Texture;
 class GameObject {
 
 public:
-    enum Type {Tank, Bullet, Wall};
+    enum Type {Tank_, Cannon_, Bullet_, Wall_};
 
     
     GameObject(Vector2 _pos, const char* _tex, int width_, int height_, SDL_App* _sdlApp);
@@ -27,9 +27,11 @@ public:
     float getPosX() { return pos.x; };
     float getPosY() { return pos.y; };
     SDL_Texture* getTex() { return tex; };
-    SDL_Rect* getCurrentFrame() { return currentFrame; }
+    SDL_Rect* getCurrentFrame() { return currentFrame; };
 
     virtual void lookAtDirection(Vector2 dir) = 0;
+    
+    void setAngle(float a) {angle = a;};
 
 protected:
     Type type;

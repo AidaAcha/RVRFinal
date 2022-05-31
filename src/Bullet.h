@@ -15,6 +15,8 @@ public:
     ~Bullet();
 
     void update() override;
+    void render() override;
+    void lookAtDirection(Vector2 dir) {};
 
     void setPosition(Vector2 pos_);
 private:

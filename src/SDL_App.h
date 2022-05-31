@@ -29,8 +29,12 @@ public:
     bool intersectRects(SDL_Rect& rect1, SDL_Rect& rect2);
     bool insideRect(Vector2& pos, SDL_Rect& rect);
 
+    int getWindowWidth() {return windowW;}
+    int getWindowHeight() {return windowH;}
+
 private:
     SDL_Renderer* renderer;
+    int windowW; int windowH;
     Game* game;
 };
 

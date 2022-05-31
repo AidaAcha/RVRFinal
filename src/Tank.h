@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include <vector>
+#include "Cannon.h"
 
 class SDL_Texture;
 class SDL_Rect;
@@ -19,10 +20,11 @@ public:
 
     void setPosition(Vector2 pos_);
     void lookAtDirection(Vector2 dir) override;
-    
+
 private:
     Vector2 input;
     float speed;
+    Cannon* cannon;
 };
 
 #endif

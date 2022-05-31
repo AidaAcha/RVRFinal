@@ -14,18 +14,20 @@ void SDL_App::init(){
     printf("Initializing SDL.\n");
     
     /* Initialize defaults, Video and Audio */
-    SDL_Window* window;                    // Declare a pointer
+    SDL_Window* window;
 
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);  // Initialize SDL2
     IMG_Init(IMG_INIT_PNG);
+
+    windowH = 480; windowW = 640;
 
     // Create an application window with the following settings:
     window = SDL_CreateWindow(
         "An SDL2 window",                  // window title
         SDL_WINDOWPOS_UNDEFINED,           // initial x position
         SDL_WINDOWPOS_UNDEFINED,           // initial y position
-        640,                               // width, in pixels
-        480,                               // height, in pixels
+        windowW,                               // width, in pixels
+        windowH,                               // height, in pixels
         SDL_WINDOW_OPENGL                  // flags - see below
     );
 

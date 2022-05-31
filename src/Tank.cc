@@ -1,12 +1,15 @@
 #include "Tank.h"
 #include "SDL_App.h"
 #include <SDL_image.h>
-// #include <SDL_events.h>
+#include "Cannon.h"
+#include "Game.h"
 
 Tank::Tank(const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
     GameObject(pos_, text, width_, height_, app_) {
+    ;
+    cannon = new Cannon("./resources/Canon.png", Vector2(0,0), width_, height_, app_);
 
-    type = Type::Tank;
+    type = Type::Tank_;
     speed = 1.0f;
 }
 
@@ -16,6 +19,9 @@ void Tank::update(){
     input.x *= speed;
     input.y *= speed;
     pos += input;
+    
+    Vector2 cannonPos = Vector2(pos.x, pos.y - height/3);
+    cannon->setPosition(cannonPos);
 
     lookAtDirection(input);
 

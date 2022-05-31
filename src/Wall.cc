@@ -5,5 +5,5 @@
 
 Wall::Wall(const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_):
 GameObject(pos_, text, width_, height_, app_){
-    type = Type::Wall;
+    type = Type::Wall_;
 };
