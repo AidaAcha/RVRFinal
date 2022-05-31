@@ -23,7 +23,7 @@ private:
     void initGObjs();
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;
-    //Map* gMapa;
+    Map* gMapa;
 };
 
 #endif

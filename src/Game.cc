@@ -20,8 +20,8 @@ void Game::initGObjs(){
     Tank* tank = new Tank(tex, Vector2(), 100, 100, sdlApp);
     tank->render();
 
-    //gMapa = new Map(sdlApp);
-    //gMapa->LoadMap("mapa.txt");
+    gMapa = new Map(sdlApp);
+    gMapa->LoadMap("mapa.txt");
 }
 
 void Game::addGO(GameObject* go){

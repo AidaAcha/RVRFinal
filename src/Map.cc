@@ -10,10 +10,18 @@ void Map::LoadMap(std::string path)
     int alto, ancho;
     const char* linea;
 
-    AddTile(2,2);
-    AddTile(3,2);
-    AddTile(2,3);
-    AddTile(3,3);
+    AddTile(200,0);
+    AddTile(0,200);
+    AddTile(0,270);
+    AddTile(270,0);
+    AddTile(270, 270);
+    AddTile(200,200);
+    AddTile(270,200);
+    AddTile(200,270);
+    AddTile(340, 270);
+    AddTile(270,340);
+    AddTile(480, 270);
+
     /*std::fstream mapFile;
     mapFile.open(path);
 
@@ -38,8 +46,8 @@ void Map::LoadMap(std::string path)
 void Map::AddTile(int xpos, int ypos)
 {
     Vector2 pos(xpos, ypos);
-    Wall* muro = new Wall("./resources/Wall.png", pos, 32, 32, sdlApp);
-    muros->push_back(muro);
+    Wall* muro = new Wall("./resources/Wall.png", pos, 70, 70, sdlApp);
+    //muros->push_back(muro);
 
 };
 
