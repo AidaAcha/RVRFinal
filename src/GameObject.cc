@@ -10,8 +10,8 @@ GameObject::GameObject(Vector2 _pos, const char* _tex, int width_, int height_, 
     int textW; int textH;
     tex = sdlApp->loadTexture(_tex, textW, textH);
     currentFrame = new SDL_Rect();
-    currentFrame->x = pos.getX();
-    currentFrame->y = pos.getY();
+    currentFrame->x = pos.x;
+    currentFrame->y = pos.y;
     currentFrame->w = textW;
     currentFrame->h = textH;
 
@@ -20,8 +20,8 @@ GameObject::GameObject(Vector2 _pos, const char* _tex, int width_, int height_, 
 
 void GameObject::render(){
     SDL_Rect dst;
-    dst.x = pos.getX();
-    dst.y = pos.getY();
+    dst.x = pos.x;
+    dst.y = pos.y;
     dst.w = width;
     dst.h = height;
 

@@ -15,8 +15,12 @@ public:
     ~Tank();
 
     void update() override;
+    bool handleInput(SDL_Event* event) override;
 
     void setPosition(Vector2 pos_);
+private:
+    Vector2 input;
+    float speed;
 };
 
 #endif

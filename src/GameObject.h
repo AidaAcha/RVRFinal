@@ -2,10 +2,12 @@
 #define GameObject_H_
 
 #include "Vector2.h"
+#include <SDL_events.h>
 
 class SDL_App;
 class SDL_Rect;
 class SDL_Texture;
+// class SDL_Event;
 
 class GameObject {
 
@@ -20,9 +22,10 @@ public:
 
     virtual void render();
     virtual void update() = 0;
+    virtual bool handleInput(SDL_Event* event) {return true;};
 
-    float getPosX() { return pos.getX(); };
-    float getPosY() { return pos.getY(); };
+    float getPosX() { return pos.x; };
+    float getPosY() { return pos.y; };
     SDL_Texture* getTex() { return tex; };
     SDL_Rect* getCurrentFrame() { return currentFrame; }
 

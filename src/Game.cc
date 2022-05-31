@@ -6,6 +6,8 @@
 #include "GameObject.h"
 #include "Tank.h"
 
+#include "SDL_events.h"
+
 void Game::init(){
     
     initGObjs();
@@ -32,6 +34,10 @@ void Game::gameLoop() {
         // // Handle all Events
         // while (SDL_PollEvent(&event)) { 
         for(auto it = gObjs.cbegin(); it != gObjs.cend(); ++it){
+            SDL_Event event;
+            while (SDL_PollEvent(&event)) { 
+                exit = !(*it)->handleInput(&event);
+            }
             (*it)->update();
             (*it)->render();
         }

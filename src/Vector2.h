@@ -12,14 +12,15 @@ public:
     void print(){
         std::cout << x << ", " << y << "\n";
     }
-
-    float getX() { return x; };
-    float getY() { return y; };
-
-    void setX(float _x) { x = _x; }
-    void setY(float _y) { y = _y; }
-private:
+    void clear() {x = 0; y = 0;};
     float x, y;
+
+    Vector2& operator+=(const Vector2& other){
+
+      this->x += other.x;
+      this->y+= other.y;
+      return *this;
+    }
 };
 
 #endif

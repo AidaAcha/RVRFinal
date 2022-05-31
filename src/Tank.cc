@@ -1,15 +1,58 @@
 #include "Tank.h"
 #include "SDL_App.h"
 #include <SDL_image.h>
+// #include <SDL_events.h>
 
 Tank::Tank(const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
     GameObject(pos_, text, width_, height_, app_) {
 
     type = Type::Tank;
+    speed = 1.0f;
 }
 
 void Tank::update(){
+    
+    //uso input
+    input.x *= speed;
+    input.y *= speed;
+    pos += input;
+    //borro input
+    input.clear();
+}
 
+bool Tank::handleInput(SDL_Event* event){
+    switch ((*event).type)
+    {
+    case SDL_KEYDOWN:{
+
+        SDL_Keycode k = (*event).key.keysym.sym;
+        switch (k)
+        {
+        case SDLK_a:
+            input.x += -1;
+            break;
+        case SDLK_d:
+            input.x += 1;
+            break;
+        case SDLK_w:
+            input.y += -1;
+            break;
+        case SDLK_s:
+            input.y += 1;
+            break;
+        case SDLK_ESCAPE:
+            return false;
+        default:
+            break;
+        }
+    }
+    break;
+    default:
+        break;
+    }
+    
+    
+    return true;
 }
 
 void Tank::setPosition(Vector2 pos_){
