@@ -18,6 +18,8 @@ public:
     bool handleInput(SDL_Event* event) override;
 
     void setPosition(Vector2 pos_);
+    void lookAtDirection(Vector2 dir) override;
+    
 private:
     Vector2 input;
     float speed;

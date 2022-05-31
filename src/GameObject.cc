@@ -14,6 +14,7 @@ GameObject::GameObject(Vector2 _pos, const char* _tex, int width_, int height_, 
     currentFrame->y = pos.y;
     currentFrame->w = textW;
     currentFrame->h = textH;
+    angle = 0;
 
     sdlApp->getGame()->addGO(this);
 };
@@ -25,7 +26,7 @@ void GameObject::render(){
     dst.w = width;
     dst.h = height;
 
-    SDL_RenderCopy(sdlApp->getRenderer(), tex, currentFrame, &dst);
+    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, &dst, angle, NULL, SDL_FLIP_NONE);
 }
 
 GameObject::~GameObject(){

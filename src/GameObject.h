@@ -29,14 +29,19 @@ public:
     SDL_Texture* getTex() { return tex; };
     SDL_Rect* getCurrentFrame() { return currentFrame; }
 
+    virtual void lookAtDirection(Vector2 dir) = 0;
+
 protected:
     Type type;
-    SDL_App* sdlApp;
     Vector2 pos;
+    
+    SDL_App* sdlApp;
     SDL_Rect* currentFrame;
     SDL_Texture* tex;
+
     int width;
     int height;
+    double angle;
 };
 
 #endif

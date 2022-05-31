@@ -21,6 +21,10 @@ public:
       this->y+= other.y;
       return *this;
     }
+
+    bool operator==(const Vector2& other){
+      return this->x == other.x && this->y == other.y;
+    }
 };
 
 #endif

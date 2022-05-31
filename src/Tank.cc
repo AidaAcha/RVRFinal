@@ -16,6 +16,9 @@ void Tank::update(){
     input.x *= speed;
     input.y *= speed;
     pos += input;
+
+    lookAtDirection(input);
+
     //borro input
     input.clear();
 }
@@ -57,6 +60,17 @@ bool Tank::handleInput(SDL_Event* event){
 
 void Tank::setPosition(Vector2 pos_){
     pos = pos_;
+}
+
+void Tank::lookAtDirection(Vector2 dir){
+    if(dir == Vector2(1,0))
+        angle = 90;
+    else if(dir == Vector2(-1,0))
+        angle = -90;
+    else if(dir == Vector2(0,1))
+        angle = 180;
+    else if(dir == Vector2(0,-1))
+        angle = 0;
 }
 
 Tank::~Tank(){

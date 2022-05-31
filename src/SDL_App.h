@@ -6,8 +6,10 @@
 
 class SDL_Texture;
 class SDL_Renderer;
+class SDL_Rect;
 class GameObject;
 class Game;
+class Vector2;
 
 class SDL_App {
 public:
