@@ -16,11 +16,13 @@ public:
     void init();
 
     SDL_Texture* loadTexture(const char* text, int* width, int* height);
+    void render(GameObject* _go);
 
     void clearWindow();
     void renderPresent();
 
     SDL_Renderer* getRenderer() {return renderer;};
+
 
 private:
     SDL_Renderer* renderer;

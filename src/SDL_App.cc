@@ -75,6 +75,11 @@ SDL_Texture* SDL_App::loadTexture(const char* text, int* width, int* height){
     return texture;
 }
 
+void SDL_App::render(GameObject* _go)
+{
+    _go->render();
+}
+
 void SDL_App::renderPresent(){
     SDL_RenderPresent(renderer);
 }
