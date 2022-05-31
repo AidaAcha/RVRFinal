@@ -16,7 +16,7 @@ void Game::init(){
 
 // We can add scenes instead of these if it gets bigger
 void Game::initGObjs(){
-    const char* tex = "./resources/tank.png";
+    const char* tex = "./resources/Tank.png";
     Tank* tank = new Tank(tex, Vector2(), 100, 100, sdlApp);
     tank->render();
 }
