@@ -23,12 +23,12 @@ public:
 
     SDL_Renderer* getRenderer() {return renderer;};
 
+    void addGO(GameObject* go);
 
 private:
     SDL_Renderer* renderer;
     void initGObjs();
     void gameLoop();
-    void addGO(GameObject* go);
     std::vector<GameObject*> gObjs;
 };
 

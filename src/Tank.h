@@ -11,21 +11,12 @@ class SDL_App;
 class Tank : public GameObject {
 public:
     
-    Tank(const char* text, int x_, int y_, int size_, SDL_App* app_);
+    Tank(const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_);
     ~Tank();
 
     void update() override;
-    void render() override;
 
-    void setPosition(int x_, int y_);
-    pair getPosition() {  return pair(x, y); };
-
-private:
-    int x; int y;
-    int size;
-
-    SDL_Texture* texture;
-    SDL_Rect* rect;
+    void setPosition(Vector2 pos_);
 };
 
 #endif
