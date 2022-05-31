@@ -82,6 +82,22 @@ void SDL_App::clearWindow(){
     SDL_RenderClear(renderer);
 }
 
+bool SDL_App::intersectRects(SDL_Rect& rect1, SDL_Rect& rect2) {
+    Vector2 v0 = Vector2(rect1.x, rect1.y);
+    Vector2 v1 = Vector2(rect1.x + rect1.w - 1, rect1.y);
+    Vector2 v2 = Vector2(rect1.x, rect1.y + rect1.h - 1);
+    Vector2 v3 = Vector2(rect1.x + rect1.w - 1, rect1.y + rect1.h - 1);
+
+    // Comprueba si alguna esquina del collider del fantasma est� dentro del collider de pacman
+    return (insideRect(v0, rect2) || insideRect(v1, rect2) ||
+            insideRect(v2, rect2) || insideRect(v3, rect2));
+}
+
+bool SDL_App::insideRect(Vector2& pos, SDL_Rect& rect) {
+    return (pos.x >= rect.x && pos.y >= rect.y &&
+        pos.x < rect.x + rect.w && pos.y < rect.y + rect.h);
+}
+
 SDL_App::~SDL_App(){
     delete game;
 

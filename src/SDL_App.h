@@ -23,6 +23,10 @@ public:
 
     SDL_Renderer* getRenderer() {return renderer;};
     Game* getGame() {return game;};
+
+    bool intersectRects(SDL_Rect& rect1, SDL_Rect& rect2);
+    bool insideRect(Vector2& pos, SDL_Rect& rect);
+
 private:
     SDL_Renderer* renderer;
     Game* game;
