@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
+#include "Vector2.h"
 struct pair
 {
     int first;
@@ -18,7 +19,8 @@ class GameObject {
 public:
     enum Type {Tank, Bullet, Wall};
 
-    GameObject(float _x, float _y, SDL_Texture* _tex, SDL_App* _sdlApp);
+    
+    GameObject(Vector2 _pos, SDL_Texture* _tex, SDL_App* _sdlApp);
     GameObject(SDL_App* _sdlApp) { sdlApp = _sdlApp; };
     virtual ~GameObject() {};
     
@@ -27,8 +29,8 @@ public:
     virtual void render();
     virtual void update() = 0;
 
-    float getX() { return x; };
-    float getY() { return y; };
+    float getPosX() { return pos.getX(); };
+    float getPosY() { return pos.getY(); };
     SDL_Texture* getTex() { return tex; };
     SDL_Rect getCurrentFrame() { return currentFrame; }
 
@@ -36,7 +38,8 @@ protected:
     Type type;
     SDL_App* sdlApp;
 private:
-    float x, y; //posicion en la ventana (todos los obj lo tienen)
+    Vector2 pos;
+    //float x, y; //posicion en la ventana (todos los obj lo tienen)
     SDL_Rect currentFrame;
     SDL_Texture* tex;
 };
