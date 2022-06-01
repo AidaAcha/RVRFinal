@@ -7,54 +7,22 @@
 #include <vector>
 #include <memory>
 
+bool Client::startGame = false;
+
 Client::Client(const char * s, const char * p, const char * n) : socket(s, p),
         nick(n){};
 
 
 void Client::login()
 {
-    // std::string msg;
-
-    // Message em(nick, msg);
-    // em.type = ChatMessage::LOGIN;
-
-    // socket.send(em, socket);
+    Message msg(Message::LOGIN);
+    socket.send(msg, socket); 
 }
 
 void Client::logout()
 {
-    // std::string msg;
-
-    // ChatMessage em(nick, msg);
-    // em.type = ChatMessage::LOGOUT;
-
-    // socket.send(em, socket);
-}
-
-void Client::input_thread()
-{
-    while (true)
-    {
-    //     // Leer stdin con std::getline
-    //     // Enviar al servidor usando socket
-    //     std::string msg;
-    //     std::getline(std::cin, msg);
-
-    //     if(msg=="!q"){
-    //         logout();
-    //         break;
-    //     }
-    //     else if(msg.length()>80){
-    //         std::cerr << "Mensaje excede longitud maxima\n";
-    //         continue;
-    //     }
-
-    //     ChatMessage em(nick,msg);
-    //     em.type = ChatMessage::MESSAGE;
-
-    //     socket.send(em, socket);
-    // }
-    }
+    Message msg(Message::LOGOUT);
+    socket.send(msg, socket);
 }
 
 void Client::net_thread()
@@ -62,14 +30,43 @@ void Client::net_thread()
     while(true)
     {
         // //Recibir Mensajes de red
-        // //Mostrar en pantalla el mensaje de la forma "nick: mensaje"
-        // ChatMessage ms;
-        // Socket* s;
-        // int sk = socket.recv(ms, s);
-        // if(sk==-1){
-        //     std::cerr << "Error en socket.recv()";
-        //     return;
-        // }
+        Socket* server;
+        Message msg;
+        int sk = socket.recv(msg, server);
+        if(sk ==-1){
+            //no se ha mandado ningun mensaje
+            continue;
+        }
+
+        //START, PLAYERPOS, BULLETPOS, INPUT, DEAD, HIT
+        //recibir mensajes
+        switch (msg.type)
+        {
+        case Message::START:
+            startGame = true;
+            break;
+        case Message::PLAYERPOS:
+            /* code */
+            break;
+        case Message::BULLETPOS:
+            /* code */
+            break;
+        case Message::INPUT:
+            /* code */
+            break;
+        case Message::DEAD:
+            /* code */
+            break;
+        case Message::HIT:
+            /* code */
+            break;
+        
+        default:
+            break;
+
+
+
+
 
         // std::cout << ms.nick << ": " << ms.message << '\n';
     }
