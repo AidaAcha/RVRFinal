@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include <vector>
+#include <chrono>
 
 class SDL_Texture;
 class SDL_Rect;
@@ -22,6 +23,8 @@ public:
 private:
     Vector2 dir;
     float speed;
+    bool dead = false;
+    std::chrono::_V2::system_clock::time_point start;
 };
 
 #endif

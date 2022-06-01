@@ -6,6 +6,7 @@
 
 #include "Serializable.h"
 #include "InputMessage.h"
+#include "BulletMessage.h"
 #include "Socket.h"
 
 //------------------------------------------------------------------------------
@@ -37,7 +38,9 @@ public:
 
     Message(){};
 
-    Message(const std::string& n, const std::string& m){};
+    Message(const uint8_t typ);
+    Message(const uint8_t typ, InputMessage inp, char play);
+    Message(const uint8_t typ, BulletMessage b, int bNum);
 
     void to_bin() override;
 
@@ -46,6 +49,8 @@ public:
     uint8_t type;
 
     char player;
+    int bulletNum;
     
     InputMessage input;
+    BulletMessage bullet;
 };

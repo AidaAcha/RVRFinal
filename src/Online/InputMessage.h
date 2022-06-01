@@ -7,12 +7,13 @@ struct InputMessage
     bool right = false; bool left = false;
     bool up = false; bool down = false;
     bool cannonRight = false; bool cannonLeft = false;
+    bool shoot = false;
 
     std::string toString()
     {
         return std::to_string(right) + std::to_string(left)
             + std::to_string(up) + std::to_string(down) + std::to_string(cannonRight)
-            + std::to_string(cannonLeft) + '\0';
+            + std::to_string(cannonLeft) + std::to_string(shoot) + '\0';
     }
 
     void fromString(const char* string)
@@ -23,6 +24,7 @@ struct InputMessage
         down = (string[3] - '0');
         cannonRight = (string[4] - '0');
         cannonLeft = (string[5] - '0');
+        shoot = (string[6] - '0');
     }
 };
 
