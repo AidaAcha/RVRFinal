@@ -1,7 +1,7 @@
 SRC_DIR := src
 SRC_FILES := $(wildcard $(SRC_DIR)/*.cc) $(wildcard $(SRC_DIR)/*/*.cc) 
 OBJ_FILES := $(patsubst $(SRC_DIR)/%.cc,$(SRC_DIR)/%.o,$(SRC_FILES))
-EXEC_FILE := main
+EXEC_FILE := WarTanks
 
 
 # Linux
