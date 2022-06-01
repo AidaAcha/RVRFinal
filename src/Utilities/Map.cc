@@ -21,7 +21,7 @@ void Map::LoadMap(const char * path)
 
     leer_archivo(path);
 
-    AddTile(200,0);
+    //AddTile(200,0);
     //AddTile(0,200);
     //AddTile(0,270);
     //AddTile(270,0);
@@ -57,12 +57,25 @@ void Map::leer_archivo(const char *nombre){
         exit(1);
     }
     
-    while (!feof(f))
+    fgets(aux2, 5, f);
+    //printf("%s", aux2);
+    int ancho, alto;
+    ancho = atoi(aux2);
+    //printf("%i", ancho);
+    fgets(aux2, 5, f);
+    alto = atoi(aux2);
+
+    for(int i = 0; i < ancho; i++)
     {
-        fgets(aux2, 5, f);
-        printf("%s", aux2);
+        for(int j = 0; j < alto; j++)
+        {
+            aux = fgetc(f);
+            if(aux == 49)
+            {
+                AddTile(70/2 + j*70,70/2 + i*70);
+            }
+        }
     }
     printf("\n");
     fclose(f);
-
 };
