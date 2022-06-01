@@ -6,7 +6,7 @@
 
 #include "Serializable.h"
 #include "InputMessage.h"
-#include "BulletMessage.h"
+#include "PositionMessage.h"
 #include "Socket.h"
 
 //------------------------------------------------------------------------------
@@ -37,20 +37,23 @@ public:
     };
 
     Message(){};
+    ~Message();
 
     Message(const uint8_t typ);
     Message(const uint8_t typ, InputMessage inp, char play);
-    Message(const uint8_t typ, BulletMessage b, int bNum);
+    Message(const uint8_t typ, PositionMessage b, int bNum);
+    Message(const uint8_t typ, PositionMessage p, char play);
 
     void to_bin() override;
 
-    int from_bin(char * bobj) override;
+    int from_bin(char * buff) override;
 
+private:
     uint8_t type;
 
     char player;
     int bulletNum;
     
     InputMessage input;
-    BulletMessage bullet;
+    PositionMessage pos;
 };

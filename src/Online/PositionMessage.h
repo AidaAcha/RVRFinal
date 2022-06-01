@@ -1,8 +1,8 @@
-#ifndef BulletMessage_H_
-#define BulletMessage_H_
+#ifndef PositionMessage_H_
+#define PositionMessage_H_
 #include <string>
 
-struct BulletMessage
+struct PositionMessage
 {
     int x; int y;
 
