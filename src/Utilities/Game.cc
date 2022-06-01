@@ -18,15 +18,19 @@ void Game::init(){
 // We can add scenes instead of these if it gets bigger
 void Game::initGObjs(){
     const char* tex = "./resources/Tank.png";
-    Tank* tank = new Tank(tex, Vector2(), 32, 32, sdlApp);
-    tank->setPosition(Vector2(sdlApp->getWindowWidth() / 2, sdlApp->getWindowHeight() / 2));
-
+    player = new Tank(tex, Vector2(), 32, 32, sdlApp);
+    player->setPosition(Vector2(sdlApp->getWindowWidth() / 2, sdlApp->getWindowHeight() / 2));
+    
     gMapa = new Map(sdlApp);
     gMapa->LoadMap("mapa.txt");
 }
 
 void Game::addGO(GameObject* go){
     gObjs.push_back(go);
+}
+
+void Game::addGOMuro(GameObject* go){
+    murosMap.push_back(go);
 }
 
 void Game::gameLoop() {
@@ -46,6 +50,20 @@ void Game::gameLoop() {
             exit = !gObjs[i]->handleInput(&event);
         
             gObjs[i]->update();
+
+            //Collisiones tanque con objetos
+            for(int i = 0; i < gObjs.size(); i++)
+            {
+                if(gObjs[i]->getType() == GameObject::Type::Wall_)
+                {
+                    if(sdlApp->intersectRects(*player->getCurrentFrame(), *gObjs[i]->getCurrentFrame())){
+                        //player->setPosition(player->getlastPosition());
+                        //no funcona, detecta colision todo el rato
+                    }
+                }
+            } 
+
+
             gObjs[i]->render();
         }
         

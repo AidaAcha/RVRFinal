@@ -26,6 +26,9 @@ public:
 
     float getPosX() { return pos.x; };
     float getPosY() { return pos.y; };
+
+    Vector2 getPosiotion() { return pos; };
+
     SDL_Texture* getTex() { return tex; };
     SDL_Rect* getCurrentFrame() { return currentFrame; };
 

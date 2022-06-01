@@ -9,6 +9,7 @@ class SDL_Renderer;
 class GameObject;
 class SDL_App;
 class Map;
+class Tank;
 
 class Game {
 public:
@@ -19,11 +20,15 @@ public:
 
     void gameLoop();
     void addGO(GameObject* go);
+    void addGOMuro(GameObject* muro);
+    std::vector<GameObject*> getObjs() { return gObjs; };
 private:
     void initGObjs();
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;
     Map* gMapa;
+    Tank* player;
+    std::vector<GameObject*> murosMap;
 };
 
 #endif

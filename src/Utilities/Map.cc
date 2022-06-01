@@ -1,6 +1,15 @@
 #include "Map.h"
+#include "Game.h"
+#include "SDL_App.h"
 #include <fstream>
 #include "Wall.h"
+
+Map::Map(SDL_App* _sdlApp) : sdlApp(_sdlApp){
+    if(sdlApp != nullptr)
+    {
+        g = sdlApp->getGame();
+    }
+}
 
 Map::~Map(){}
 
@@ -11,16 +20,16 @@ void Map::LoadMap(std::string path)
     const char* linea;
 
     AddTile(200,0);
-    AddTile(0,200);
-    AddTile(0,270);
-    AddTile(270,0);
-    AddTile(270, 270);
-    AddTile(200,200);
-    AddTile(270,200);
-    AddTile(200,270);
-    AddTile(340, 270);
-    AddTile(270,340);
-    AddTile(480, 270);
+    //AddTile(0,200);
+    //AddTile(0,270);
+    //AddTile(270,0);
+    //AddTile(270, 270);
+    //AddTile(200,200);
+    //AddTile(270,200);
+    //AddTile(200,270);
+    //AddTile(340, 270);
+    //AddTile(270,340);
+    //AddTile(480, 270);
 
     /*std::fstream mapFile;
     mapFile.open(path);
@@ -47,7 +56,8 @@ void Map::AddTile(int xpos, int ypos)
 {
     Vector2 pos(xpos, ypos);
     Wall* muro = new Wall("./resources/Wall.png", pos, 70, 70, sdlApp);
-    //muros->push_back(muro);
+    
+    if(g!=nullptr) g->addGOMuro(muro);
 
 };
 
