@@ -12,9 +12,9 @@ public:
     Map(SDL_App* _sdlApp);
     ~Map();
 
-    void LoadMap(std::string path);
+    void LoadMap(const char * path);
     void AddTile(int xpos, int ypos);
-
+    void leer_archivo(const char *nombre);
 private:
     std::vector<Wall*> muros;
     SDL_App* sdlApp;

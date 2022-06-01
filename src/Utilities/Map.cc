@@ -13,11 +13,13 @@ Map::Map(SDL_App* _sdlApp) : sdlApp(_sdlApp){
 
 Map::~Map(){}
 
-void Map::LoadMap(std::string path)
+void Map::LoadMap(const char * path)
 {
     char c;
     int alto, ancho;
     const char* linea;
+
+    //leer_archivo(path);
 
     AddTile(200,0);
     //AddTile(0,200);
@@ -31,25 +33,7 @@ void Map::LoadMap(std::string path)
     //AddTile(270,340);
     //AddTile(480, 270);
 
-    /*std::fstream mapFile;
-    mapFile.open(path);
-
-    getline(mapFile, linea);
-    alto = std::stoi(linea);
-
-    getline(mapFile, linea);
-    ancho = std::stoi(linea);
-
-    for(int y = 0; y < alto - 1; y++){
-        getline(mapFile, linea);
-        for(int x = 0; x < linea.length() - 1; x++){
-            if(linea[x] == 1){
-                AddTile(x,y);
-            }
-        }
-    }
-
-    mapFile.close();*/
+   
 }
 
 void Map::AddTile(int xpos, int ypos)
@@ -61,22 +45,24 @@ void Map::AddTile(int xpos, int ypos)
 
 };
 
-/*void leer_archivo(char *nombre){
-    char temp[50];
-    int cont = 0;
-    FILE *archivo;
-    archivo = fopen(nombre, "r");
-    if(archivo){
-        
-        while (!feof(archivo))
-        {
-            fgets(temp, 50, archivo);
-            cont++;
-        }
-        
-
-    }else{
-        fprintf(stderr, "No se puede abrir el archivo %s para lectura\n");
+void Map::leer_archivo(const char *nombre){
+    
+    char aux;
+    char aux2[5];
+    FILE *f;
+    f = fopen(nombre, "r");
+    if(f == NULL)
+    {
+        printf("No se ha podido abrir el fichero. \n");
         exit(1);
     }
-}*/
+    
+    while (!feof(f))
+    {
+        fgets(aux2, 100, f);
+        printf("%s", aux2);
+    }
+    printf("\n");
+    fclose(f);
+
+};
