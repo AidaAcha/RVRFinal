@@ -20,9 +20,9 @@ void Game::initGObjs(){
     const char* tex = "./resources/Tank.png";
     player = new Tank(tex, Vector2(), 32, 32, sdlApp);
     player->setPosition(Vector2(sdlApp->getWindowWidth() / 2, sdlApp->getWindowHeight() / 2));
-    
+    tex = "mapa.txt";
     gMapa = new Map(sdlApp);
-    gMapa->LoadMap("mapa.txt");
+    gMapa->LoadMap(tex);
 }
 
 void Game::addGO(GameObject* go){

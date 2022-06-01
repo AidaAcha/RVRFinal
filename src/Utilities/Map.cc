@@ -19,7 +19,7 @@ void Map::LoadMap(const char * path)
     int alto, ancho;
     const char* linea;
 
-    //leer_archivo(path);
+    leer_archivo(path);
 
     AddTile(200,0);
     //AddTile(0,200);
@@ -49,7 +49,7 @@ void Map::leer_archivo(const char *nombre){
     
     char aux;
     char aux2[5];
-    FILE *f;
+    FILE* f;
     f = fopen(nombre, "r");
     if(f == NULL)
     {
@@ -59,7 +59,7 @@ void Map::leer_archivo(const char *nombre){
     
     while (!feof(f))
     {
-        fgets(aux2, 100, f);
+        fgets(aux2, 5, f);
         printf("%s", aux2);
     }
     printf("\n");
