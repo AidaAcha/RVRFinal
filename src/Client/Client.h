@@ -22,14 +22,7 @@ public:
     void logout();
 
     /**
-     *  Rutina principal para el Thread de E/S. Lee datos de STDIN (std::getline)
-     *  y los envía por red vía el Socket.
-     */
-    void input_thread();
-
-    /**
-     *  Rutina del thread de Red. Recibe datos de la red y los "renderiza"
-     *  en STDOUT
+     *  Rutina del thread de Red. Recibe datos de la red.
      */
     void net_thread();
 
@@ -44,6 +37,11 @@ private:
      * Nick del usuario
      */
     std::string nick;
+
+    /**
+     * True cuando comienza la partida
+     */
+    static bool startGame;
 };
 
 
