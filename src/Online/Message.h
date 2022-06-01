@@ -48,8 +48,9 @@ public:
 
     int from_bin(char * buff) override;
 
-private:
     uint8_t type;
+
+private:
 
     char player;
     int bulletNum;
