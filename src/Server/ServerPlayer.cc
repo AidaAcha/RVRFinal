@@ -12,6 +12,10 @@ ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, int playerID)
     type = GameObject::Tank_;
 }
 
+ServerPlayer::~ServerPlayer(){
+    
+}
+
 void ServerPlayer::update()
 {
     Input();
