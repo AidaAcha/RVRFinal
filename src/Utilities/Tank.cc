@@ -24,9 +24,7 @@ void Tank::update(){
     input.y *= speed;
     lastpos = pos;
     pos += input;
-
-
-
+    
     Vector2 cannonPos = Vector2(pos.x, pos.y - height/3);
     cannon->setPosition(cannonPos);
 
