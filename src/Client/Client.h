@@ -42,6 +42,7 @@ private:
      * True cuando comienza la partida
      */
     static bool startGame;
+    static char id;
 };
 
 

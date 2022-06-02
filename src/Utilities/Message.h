@@ -33,7 +33,7 @@ public:
 
     enum MessageType
     {
-        LOGIN = 0, START, PLAYERPOS, BULLETPOS, INPUT, DEAD, HIT, LOGOUT
+        LOGIN = 0, CONNNECTED, START, PLAYERPOS, BULLETPOS, INPUT, DEAD, HIT, LOGOUT
     };
 
     Message(){};
@@ -50,9 +50,9 @@ public:
 
     uint8_t type;
 
+    char player;
 private:
 
-    char player;
     int bulletNum;
     
     InputMessage input;

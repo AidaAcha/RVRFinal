@@ -4,67 +4,51 @@
 
 Server::Server(const char * s, const char * p): socket(s, p){
     socket.bind();
+    clients.reserve(MAX_PLAYERS);
 }
 
 void Server::do_messages(){
-    while (true)
+    std::cout << "Server up\n" << "Waiting for players\n";
+
+    while(true) //receive messages
     {
-        // /*
-        //  * NOTA: los clientes están definidos con "smart pointers", es necesario
-        //  * crear un unique_ptr con el objeto socket recibido y usar std::move
-        //  * para añadirlo al vector
-        //  */
+        Socket* client;
+        Message msg;
+        socket.recv(msg, client);
 
-        // //Recibir Mensajes en y en función del tipo de mensaje
-        // // - LOGIN: Añadir al vector clients
-        // // - LOGOUT: Eliminar del vector clients
-        // // - MESSAGE: Reenviar el mensaje a todos los clientes (menos el emisor)
+        switch(msg.type)
+        {
+            case Message::LOGIN:
+                if(clients.size() < MAX_PLAYERS) //add player
+                {
+                    clients.push_back(client);
+                    std::cout << "Player " << clients.size() << " joined the game\n";
 
+                    Message ms(Message::CONNNECTED);
+                    ms.player = (clients.size() - 1) + '0'; //send id to connected client
+                    socket.send(ms, *client);
 
-        // ChatMessage msg;
-        // Socket *s;
-        // int sd = socket.recv(msg, s);
-        // if(sd == -1){
-        //     std::cerr << "Error en socket.recv()\n";
-        //     return;
-        // }
+                }
+                else
+                {
+                    std::cout << "Players full\n";
+                }  
+            break;
 
-        // switch(msg.type) {
-	    // case ChatMessage::LOGIN:
-        // {
-	    //     std::cout << "Login de jugador:  " << msg.nick << "\n";
-	    //     clients.push_back(std::move(std::make_unique<Socket>(*s)));
-        //     break;
-        // }
-	    // case ChatMessage::LOGOUT:
-        // {
-        //     auto it = clients.begin();
-	    //     while (it != clients.end() && (**it != *s))
-		//         ++it;
+            case Message::LOGOUT:
+                for(int i = 0; i < clients.size(); i++) //delete player from saved clients
+                {
+                    if(*clients[i] == *client)
+                    {
+                        clients.erase(clients.begin() + i);
 
-	    //     if (it == clients.end())
-		//         std::cout << "Error, logout de jugador que no estaba conectado\n";
-	    //     else {
-		//         std::cout << "Logout de jugador:  " << msg.nick << "\n";
-        //         clients.erase(it);
-		//         Socket *delSock = (*it).release();
-		//         delete delSock; 
-	    //     }
-	    //     break;
-        // }
-	    // case ChatMessage::MESSAGE:
-        // {
-        //     std::cout << msg.nick << ": " << msg.message << "\n";
-	    //     for (auto it = clients.begin(); it != clients.end(); ++it) {
-		//     if (**it !=  *s)
-		//         s->send(msg, **it);
-	    //     }
-	    //     break;
-        // }
-	    // default:
-        //     break;
-	    // }
-
+                        int id = (msg.player - '0') + 1;
+                        std::cout << "Player " << id << " exited game" << std::endl;
+                        break;
+                    }
+                }
+            break;
+        }
     }
 }
 

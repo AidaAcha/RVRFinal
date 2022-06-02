@@ -9,6 +9,7 @@
 #include <memory>
 
 bool Client::startGame = false;
+char Client::id = '0';
 
 Client::Client(const char * s, const char * p, const char * n) : socket(s, p),
         nick(n){};
@@ -23,6 +24,7 @@ void Client::login()
 void Client::logout()
 {
     Message msg(Message::LOGOUT);
+    msg.player = id;
     socket.send(msg, socket);
 }
 
@@ -45,6 +47,10 @@ void Client::net_thread()
         {
         case Message::START:
             startGame = true;
+            break;
+        case Message::CONNNECTED:
+            id = msg.player;
+            //init game
             break;
         case Message::PLAYERPOS:
             /* code */
