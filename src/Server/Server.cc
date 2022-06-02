@@ -12,7 +12,6 @@ Server::Server(const char * s, const char * p) {
     clients.reserve(MAX_PLAYERS);
     inputPlayers = new InputMessage[MAX_PLAYERS];
 }
-Server::~Server(){}
 
 void Server::do_messages(){
     std::cout << "Server up\n" << "Waiting for players\n";
