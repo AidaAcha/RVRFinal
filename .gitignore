@@ -1,7 +1,8 @@
 .vscode/*.log
 .vscode/*
 *.o
-WarTanks
+.bin/ClientWarTanks
+.bin/ServerWarTanks
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
