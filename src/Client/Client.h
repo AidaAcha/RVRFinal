@@ -3,14 +3,21 @@
 
 #include "../Utilities/Socket.h"
 
+class Game;
+
 class Client{
 public:
+    Client(){};
+    ~Client(){
+        logout();
+        if(socket) delete socket;
+    }
     /**
      * @param s dirección del servidor
      * @param p puerto del servidor
-     * @param n nick del usuario
      */
-    Client(const char * s, const char * p, const char * n);
+    void init(const char * s, const char * p, Game* g);
+
     /**
      *  Envía el mensaje de login al servidor
      */
@@ -24,20 +31,28 @@ public:
     /**
      *  Rutina del thread de Red. Recibe datos de la red.
      */
-    void net_thread();
+    void* net_thread();
+
+    static void* netThread(void* object){
+        return reinterpret_cast<Client*>(object)->net_thread();
+    }
 
 private:
 
     /**
      * Socket para comunicar con el servidor
      */
-    Socket socket;
+    Socket* socket;
 
     /**
      * Nick del usuario
      */
     std::string nick;
 
+    /**
+     * Juego del cliente
+     */
+    Game* game;
     /**
      * True cuando comienza la partida
      */

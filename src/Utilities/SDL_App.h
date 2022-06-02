@@ -16,7 +16,7 @@ public:
     SDL_App() {};
     ~SDL_App();
 
-    void init();
+    void init(Game* game);
 
     SDL_Texture* loadTexture(const char* text, int& width, int& height);
 
