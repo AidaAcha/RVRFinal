@@ -22,11 +22,14 @@ void ServerPlayer::update()
 
     if(cRight)
     {
-
+        sc.setCDirR(true);
     }
     else if(cLeft)
     {
-
+        sc.setCDirL(true);
+    }else if(cShoot)
+    {
+        sc.setCShoot(true);
     }
 }
 
