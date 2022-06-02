@@ -15,7 +15,8 @@ void Message::to_bin(){
     switch (type)
     {
     case LOGIN:
-    case START: {
+    case START:
+    case CONNNECTED: {
         alloc_data(sizeof(uint8_t));
         memcpy((void*) data(), (void*) &type, sizeof(uint8_t));
     }
@@ -34,7 +35,8 @@ void Message::to_bin(){
     } break;
     case DEAD:
     case HIT: 
-    case LOGOUT: {
+    case LOGOUT:
+    case READYTOPLAY: {
         alloc_data(sizeof(uint8_t) + sizeof(char));
         char* aux = data();
 
@@ -83,7 +85,8 @@ int Message::from_bin(char* buff){
     {
     case LOGOUT:
     case HIT:
-    case DEAD: {
+    case DEAD:
+    case READYTOPLAY: {
         memcpy(&player, aux, sizeof(char));
     } break;
     case INPUT:{

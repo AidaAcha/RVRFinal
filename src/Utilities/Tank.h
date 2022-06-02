@@ -23,15 +23,12 @@ public:
     void setPosition(Vector2 pos_);
     void lookAtDirection(Vector2 dir) override;
     Vector2 getlastPosition() { return lastpos; };
-    //void setChocar(bool b) { chocarM = b; };
-    
 
 private:
     Vector2 input;
     float speed;
     Cannon* cannon;
     Game* g;
-    //bool chocarM = false;
     Vector2 lastpos;
 };
 

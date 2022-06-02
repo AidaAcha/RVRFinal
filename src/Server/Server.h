@@ -5,6 +5,7 @@
 #include "../Utilities/Socket.h"
 
 class Message;
+class InputMessage;
 
 class Server 
 {
@@ -38,7 +39,12 @@ private:
     /**
      * Socket del servidor
      */
-    Socket socket;
+    Socket* socket;
+
+    static bool allInputReceived;
+    static bool endGame;
+
+    static InputMessage* inputPlayers;
 };
 
 #endif
