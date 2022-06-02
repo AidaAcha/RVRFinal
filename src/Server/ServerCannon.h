@@ -15,7 +15,10 @@ public:
     void render() override {};
     void setMessageInput(InputMessage* inp);
 
-    void lookAtDirection(Vector2 dir) override {};
+    void lookAtDirection(Vector2 dir) override;
+    void setCDirL(bool d) { cLeft = d;};
+    void setCDirR(bool d) { cRight = d;};
+    void setCShoot(bool d) { cShoot = d;};
 
 private:
 
@@ -26,6 +29,8 @@ private:
     int id = 0;
     InputMessage* input;
 
-
+    bool cLeft = false;
+    bool cRight = false;
+    bool cShoot = false;
 };
 #endif

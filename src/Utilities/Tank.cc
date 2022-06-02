@@ -27,7 +27,7 @@ void Tank::update(){
     
     Vector2 cannonPos = Vector2(pos.x, pos.y - height/3);
     cannon->setPosition(cannonPos);
-
+    
     lookAtDirection(input);
 
     //borro input

@@ -6,8 +6,10 @@
 #include "../Utilities/GameObject.h"
 #include "../Utilities/InputMessage.h"
 
+
 class ServerGame;
 class Vector2;
+class ServerCannon;
 
 class ServerPlayer : public GameObject
 {
@@ -38,7 +40,9 @@ private:
 
     float speed;
     Vector2 dir;
+    ServerCannon* sc;
 
-
+    bool cLeft = false; bool cRight = false;
+    bool cShoot = false;
 };
 #endif

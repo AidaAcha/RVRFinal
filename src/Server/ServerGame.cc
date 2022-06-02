@@ -1,5 +1,4 @@
 #include "ServerGame.h"
-
 #include "ServerPlayer.h"
 #include "Server.h"
 #include "../Utilities/GameObject.h"
