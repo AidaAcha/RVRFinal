@@ -31,6 +31,7 @@ public:
 
     SDL_Texture* getTex() { return tex; };
     SDL_Rect* getCurrentFrame() { return currentFrame; };
+    SDL_Rect* getDstRect() {return dstRect;};
 
     virtual void lookAtDirection(Vector2 dir) = 0;
     
@@ -42,6 +43,7 @@ protected:
     
     SDL_App* sdlApp;
     SDL_Rect* currentFrame;
+    SDL_Rect* dstRect;
     SDL_Texture* tex;
 
     int width;

@@ -10,6 +10,7 @@ GameObject::GameObject(Vector2 _pos, const char* _tex, int width_, int height_, 
     int textW; int textH;
     tex = sdlApp->loadTexture(_tex, textW, textH);
     currentFrame = new SDL_Rect();
+    dstRect = new SDL_Rect();
     currentFrame->x = pos.x;
     currentFrame->y = pos.y;
     currentFrame->w = textW;
@@ -20,13 +21,12 @@ GameObject::GameObject(Vector2 _pos, const char* _tex, int width_, int height_, 
 };
 
 void GameObject::render(){
-    SDL_Rect dst;
-    dst.x = pos.x;
-    dst.y = pos.y;
-    dst.w = width;
-    dst.h = height;
+    dstRect->x = pos.x;
+    dstRect->y = pos.y;
+    dstRect->w = width;
+    dstRect->h = height;
 
-    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, &dst, angle, NULL, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, dstRect, angle, NULL, SDL_FLIP_NONE);
 }
 
 GameObject::~GameObject(){

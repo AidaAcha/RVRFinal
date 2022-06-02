@@ -59,10 +59,8 @@ void Game::gameLoop() {
                 {
                     if(gObjs[i]->getType() == GameObject::Type::Wall_)
                     {
-                        if(sdlApp->intersectRects(*player->getCurrentFrame(), *gObjs[i]->getCurrentFrame())){
-                            //player->setPosition(player->getlastPosition());
-                            //printf("Me choco. \n");
-                            //no funcona, detecta colision todo el rato
+                        if(sdlApp->intersectRects(*player->getDstRect(), *gObjs[i]->getDstRect())){
+                            player->setPosition(player->getlastPosition());
                         }
                     }
                 } 

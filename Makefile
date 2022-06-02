@@ -31,4 +31,5 @@ $(BIN)/$(SERVER_EXE): $(SERVER_SRC)/*.cc $(COMMON)/*.cc
 	$(CXX) $(CXX_FLAGS) -I$(COMMON) -I$(INClUDE_SERVER) -L$(LIB)  $^ -o $@ $(LIBRARIES)
 
 clean:
-	-rm $(BIN)/*
+	-rm $(BIN)/$(EXECUTABLE)
+	-rm $(BIN)/$(SERVER_EXE)

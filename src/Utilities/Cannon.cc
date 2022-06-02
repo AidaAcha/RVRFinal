@@ -74,14 +74,13 @@ bool Cannon::handleInput(SDL_Event* event){
 }
 
 void Cannon::render(){
-    SDL_Rect dst;
-    dst.x = pos.x;
-    dst.y = pos.y;
-    dst.w = width;
-    dst.h = height;
+    dstRect->x = pos.x;
+    dstRect->y = pos.y;
+    dstRect->w = width;
+    dstRect->h = height;
 
     SDL_Point center = {width/2, height - 5};
-    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, &dst, angle, &center, SDL_FLIP_NONE);
+    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, dstRect, angle, &center, SDL_FLIP_NONE);
 }
 
 void Cannon::setPosition(Vector2 pos_){
