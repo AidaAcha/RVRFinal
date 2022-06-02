@@ -20,12 +20,12 @@ void Server::do_messages(){
 
     int numPlayers = 0;
     int numInputPlayers = 0;
-
     while(true) //receive messages
     {
         Socket* client;
         Message msg;
         socket->recv(msg, client);
+        std::cout << "LLEGA NUEVO MENSAJE...\n";
 
         switch(msg.type)
         {

@@ -19,7 +19,7 @@ int main()
     app->init(&game);
     
     Client client;
-    client.init("127.0.0.1", "7778", &game);
+    client.init("127.0.0.1", "7777", &game);
 
     bool applicationClosed = false;
 
@@ -30,43 +30,7 @@ int main()
 
     game.gameLoop();
     
-    // while(!Client::InitGame() && !applicationClosed) 
-    // {    
-    //     if(!Platform::Tick()) 
-    //         applicationClosed = true;
-    // }
-
-    // if(!applicationClosed)
-    // {
-    //     game.Init(); //initialize GameObjects
-
-    //     std::cout << "Waiting for other players\n";
-
-    //     Client::SendGameReady(); //game is ready 
-
-    //     while(!Client::StartGame() && !applicationClosed) //wait until server is ready
-    //     {
-    //         if(!Platform::Tick()) 
-    //             applicationClosed = true;
-    //     }
-
-    //     std::cout << "Start game\n";
-
-    //     //game loop
-    //     while(!applicationClosed && Platform::Tick())
-    //     {
-    //         Input::Tick(); //register input
     
-    //         Client::SendInput(Input::GetInputInfo());
-    
-    //         //Render
-    //         Renderer::Clear(0); //clears last frame
-    //         game.Render();  //render new frame
-    //         Renderer::Present(); //display the new frame buffer  
-    //         Platform::Delay(125); 
-    //         //Platform::Delay(150);                
-    //     }
-    // }
 
     //Deletes
 
