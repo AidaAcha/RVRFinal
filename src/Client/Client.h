@@ -31,11 +31,7 @@ public:
     /**
      *  Rutina del thread de Red. Recibe datos de la red.
      */
-    void* net_thread();
-
-    static void* netThread(void* object){
-        return reinterpret_cast<Client*>(object)->net_thread();
-    }
+    void net_thread();
 
 private:
 
@@ -59,6 +55,5 @@ private:
     static bool startGame;
     static char id;
 };
-
 
 #endif
