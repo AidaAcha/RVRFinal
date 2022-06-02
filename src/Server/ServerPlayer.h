@@ -23,7 +23,7 @@ public:
 private:
 
     void playerHandleInput();
-
+    void Input()
     void Move();
 
     void setPosition(Vector2 pos_);
@@ -32,6 +32,8 @@ private:
 
     ServerGame* _game = nullptr; //reference to game instance
 
-    InputMessage input;
+    InputMessage* input;
+
+
 };
 #endif
