@@ -1,5 +1,5 @@
 #include "ServerCannon.h"
-#include "./Utilities/GameObject.h"
+#include "../Utilities/GameObject.h"
 
 /*ServerCannon::ServerCannon(int c)
 {

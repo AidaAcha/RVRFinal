@@ -14,7 +14,7 @@ class GameObject {
 public:
     enum Type {Tank_, Cannon_, Bullet_, Wall_};
 
-    
+    GameObject(){};
     GameObject(Vector2 _pos, const char* _tex, int width_, int height_, SDL_App* _sdlApp);
     virtual ~GameObject();
     

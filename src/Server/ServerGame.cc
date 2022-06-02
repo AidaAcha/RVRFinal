@@ -1,10 +1,13 @@
 #include "ServerGame.h"
+
 #include "ServerPlayer.h"
-#include "GameObject.h"
-#include "InputMessage.h"
-#include "PositionMessage.h"
 #include "Server.h"
-#include "Message.h"
+#include "../Utilities/GameObject.h"
+#include "../Utilities/InputMessage.h"
+#include "../Utilities/PositionMessage.h"
+#include "../Utilities/Message.h"
+
+#include "../Utilities/Vector2.h"
 
 #include <iostream>
 
