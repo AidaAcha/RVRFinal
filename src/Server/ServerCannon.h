@@ -3,6 +3,8 @@
 #include "../Utilities/GameObject.h"
 #include "../Utilities/InputMessage.h"
 
+class ServerGame;
+
 class ServerCannon : public GameObject
 {
 public:

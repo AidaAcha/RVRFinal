@@ -1,6 +1,6 @@
 #include "ServerPlayer.h"
-#include "./Utilities/InputMessage.h"
-#include "./Utilities/GameObject.h"
+#include "../Utilities/InputMessage.h"
+#include "../Utilities/GameObject.h"
 
 ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, int playerID)
 :  id(playerID)

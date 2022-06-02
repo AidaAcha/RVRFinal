@@ -1,6 +1,6 @@
 #include "ServerCannon.h"
-#include "./Utilities/GameObject.h"
-#include "./Utilities/InputMessage.h"
+#include "../Utilities/GameObject.h"
+#include "../Utilities/InputMessage.h"
 #include "ServerGame.h"
 
 ServerCannon::ServerCannon( ServerGame* gam, int c) 
