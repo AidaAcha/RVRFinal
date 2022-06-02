@@ -36,6 +36,9 @@ private:
 
     InputMessage* input;
 
+    float speed;
+    Vector2 dir;
+
 
 };
 #endif

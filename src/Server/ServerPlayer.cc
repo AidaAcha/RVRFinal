@@ -1,19 +1,16 @@
 #include "ServerPlayer.h"
-#include "../Utilities/InputMessage.h"
-#include "../Utilities/GameObject.h"
+#include "./Utilities/InputMessage.h"
+#include "./Utilities/GameObject.h"
 
 ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, int playerID)
- : GameObject()
+:  id(playerID)
 {
-    id = playerID;
     _game = gam;
     pos = v;
     angle = 0;
     type = GameObject::Tank_;
-}
-
-ServerPlayer::~ServerPlayer(){
-    
+    dir = Vector2(0,0);
+    speed = 1.0;
 }
 
 void ServerPlayer::update()
@@ -26,22 +23,23 @@ void ServerPlayer::Input()
 {
     if (input->right)
     {
-        angle = 90;
+        dir.x += 1;
     } else if (input->left)
     {
-        angle = -90;
+        dir.x += -1;
     } else if (input->up) 
     {
-        angle = 180;
+        dir.y += -1;
     }else if (input->down)
     {
-        angle = 0;
+        dir.y += 1;
     }
 }
 
 void ServerPlayer::Move()
 {
-    
+    dir *= speed;
+    pos += dir;
 }
 
 void ServerPlayer::setMessageInput(InputMessage* inp)
