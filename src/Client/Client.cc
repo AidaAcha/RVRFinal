@@ -1,6 +1,7 @@
 #include "Client.h"
 
-#include "../Online/Message.h"
+#include "../Utilities/Message.h"
+#include "../Utilities/Socket.h"
 #include <string>
 #include <unistd.h>
 #include <string.h>

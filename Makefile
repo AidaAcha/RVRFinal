@@ -1,24 +1,34 @@
-SRC_DIR := src
-SRC_FILES := $(wildcard $(SRC_DIR)/*.cc) $(wildcard $(SRC_DIR)/*/*.cc) 
-OBJ_FILES := $(patsubst $(SRC_DIR)/%.cc,$(SRC_DIR)/%.o,$(SRC_FILES))
-EXEC_FILE := WarTanks
+CXX		  := g++
+CXX_FLAGS := --std=c++17 -I/usr/include/SDL2
+ 
 
+BIN		:= bin
+SRC		:= src
+LIB		:= lib
+SERVER 	:= Server
+CLIENT 	:= Client
 
-# Linux
-#
-LDFLAGS := -L/usr/lib/x86_64-linux-gnu -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2
-CPPFLAGS := --std=c++17 -I/usr/include/SDL2
+LIBRARIES	:= -L/usr/lib/x86_64-linux-gnu -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2
+EXECUTABLE	:= ClientWarTanks
+SERVER_EXE	:= ServerWarTanks
+SERVER_SRC := src/Server
+INCLUDE_CLIENT := src/Client
+INClUDE_SERVER := src/Server
+CLIENT_SRC 	:= src/Client
+COMMON 		:= src/Utilities
 
-# OSX
-#
-#LDFLAGS := -F/Library/Frameworks -framework SDL2 -framework SDL2_image  -framework SDL2_ttf  -framework SDL2_mixer  -framework SDL2_net
-#CPPFLAGS := -std=c++17 -I/Library/Frameworks/Headers/SDL2_image -I/Library/Frameworks/Headers -I/Library/Frameworks/Headers/SDL2_mixer -I/Library/Frameworks/Headers/SDL2_net -I/Library/Frameworks/Headers/SDL2_ttf -I/Library/Frameworks/Headers/SDL2 
+all: $(BIN)/$(EXECUTABLE) $(BIN)/$(SERVER_EXE)
 
-$(EXEC_FILE): $(OBJ_FILES)
-	g++ -o $@ $^ $(LDFLAGS)
+run: clean all
+	clear
+	./$(BIN)/$(EXECUTABLE)
+	./$(BIN)/$(SERVER_EXE)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	g++ $(CPPFLAGS) -c -o $@ $<
+$(BIN)/$(EXECUTABLE): $(CLIENT_SRC)/*.cc $(COMMON)/*.cc  
+	$(CXX) $(CXX_FLAGS) -I$(INCLUDE_CLIENT) -I$(COMMON) -L$(LIB) $^ -o $@ $(LIBRARIES)
+
+$(BIN)/$(SERVER_EXE): $(SERVER_SRC)/*.cc $(COMMON)/*.cc  
+	$(CXX) $(CXX_FLAGS) -I$(COMMON) -I$(INClUDE_SERVER) -L$(LIB)  $^ -o $@ $(LIBRARIES)
 
 clean:
-	rm -f $(EXEC_FILE) $(OBJ_FILES)
+	-rm $(BIN)/*

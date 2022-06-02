@@ -1,7 +1,7 @@
 #ifndef Client_H_
 #define Client_H_
 
-#include "../Online/Socket.h"
+#include "../Utilities/Socket.h"
 
 class Client{
 public:

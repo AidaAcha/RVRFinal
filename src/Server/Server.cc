@@ -1,6 +1,6 @@
 #include "Server.h"
 
-#include "../Online/Message.h"
+#include "../Utilities/Message.h"
 
 Server::Server(const char * s, const char * p): socket(s, p){
     socket.bind();
