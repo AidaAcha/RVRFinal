@@ -22,6 +22,13 @@ public:
       return *this;
     }
 
+    Vector2& operator*=(const float& other){
+
+      this->x *= other;
+      this->y *= other;
+      return *this;
+    }
+
     Vector2& operator-=(const Vector2& other){
 
       this->x -= other.x;

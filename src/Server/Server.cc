@@ -69,7 +69,7 @@ void Server::do_messages(){
             case Message::READYTOPLAY: {
                 numPlayers++;
                 if(numPlayers >= MAX_PLAYERS){
-                    
+                    createThreadGame();
                     msg_to_clients(Message(Message::START));
                     std::cout << "WarTanks ready to play" << "\n";
                 }
