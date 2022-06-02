@@ -23,7 +23,7 @@ public:
 private:
 
     void playerHandleInput();
-    void Input()
+    void Input();
     void Move();
 
     void setPosition(Vector2 pos_);

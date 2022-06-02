@@ -6,7 +6,7 @@
 class ServerCannon : public GameObject
 {
 public:
-    ServerCannon();
+    ServerCannon(int idC);
     ~ServerCannon();
 
     void update();
@@ -14,6 +14,10 @@ public:
 
 private:
 
+    void Input();
+    void Move();
+
+    int id = 0;
     InputMessage* input;
 };
 #endif
