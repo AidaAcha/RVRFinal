@@ -15,15 +15,14 @@ void Message::to_bin(){
     switch (type)
     {
     case LOGIN:
-    case START:
-    case CONNNECTED: {
+    case START: {
         alloc_data(sizeof(uint8_t));
-        memcpy((void*) data(), (void*) &type, sizeof(uint8_t));
+        memcpy((void*) _data, (void*) &type, sizeof(uint8_t));
     }
         break;
     case INPUT: {
         alloc_data(sizeof(uint8_t) + sizeof(char) + (sizeof(InputMessage) + 1));
-        char* aux = data();
+        char* aux = _data;
 
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
         aux += sizeof(uint8_t);
@@ -36,18 +35,21 @@ void Message::to_bin(){
     case DEAD:
     case HIT: 
     case LOGOUT:
-    case READYTOPLAY: {
+    case READYTOPLAY:
+    case CONNNECTED: {
         alloc_data(sizeof(uint8_t) + sizeof(char));
-        char* aux = data();
+        char* aux = _data;
 
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
         aux += sizeof(uint8_t);
 
         memcpy((void*) aux, (void*) &player, sizeof(char));
+
+        std::cout << (int)type << player << "\n";
     } break;
     case PLAYERPOS: {
         alloc_data(sizeof(uint8_t) + sizeof(char) + (sizeof(PositionMessage) + 1));
-        char* aux = data();
+        char* aux = _data;
 
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
         aux += sizeof(uint8_t);
@@ -59,7 +61,7 @@ void Message::to_bin(){
     } break;
     case BULLETPOS: {
         alloc_data(sizeof(uint8_t) + sizeof(int) + (sizeof(PositionMessage) + 1));
-        char* aux = data();
+        char* aux = _data;
 
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
         aux += sizeof(uint8_t);
@@ -86,7 +88,8 @@ int Message::from_bin(char* buff){
     case LOGOUT:
     case HIT:
     case DEAD:
-    case READYTOPLAY: {
+    case READYTOPLAY:
+    case CONNNECTED: {
         memcpy(&player, aux, sizeof(char));
     } break;
     case INPUT:{

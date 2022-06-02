@@ -11,11 +11,11 @@ public:
     ServerCannon(ServerGame* gam, int idC);
     ~ServerCannon() {};
 
-    void update() override {};
+    void update() override;
     void render() override {};
     void setMessageInput(InputMessage* inp);
 
-    void lookAtDirection(Vector2 dir) override;
+    void lookAtDirection(Vector2 dir) override {};
     void setCDirL(bool d) { cLeft = d;};
     void setCDirR(bool d) { cRight = d;};
     void setCShoot(bool d) { cShoot = d;};

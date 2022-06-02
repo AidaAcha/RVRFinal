@@ -10,7 +10,6 @@
 #include <memory>
 #include <thread>
 
-bool Client::startGame = false;
 char Client::id = '0';
 
 
@@ -20,20 +19,7 @@ void Client::init(const char * s, const char * p, Game* g)
     socket = new Socket(s, p);
     game = g;
 
-    //Create thread to receive messages from server
-    // pthread_t recvThread;
-    // pthread_attr_t attr;
-
-    // pthread_attr_init(&attr);
-    // pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
-    // int res = pthread_create(&recvThread, &attr, &Client::netThread, NULL);
-
-    // pthread_attr_destroy(&attr);
-
     std::thread([this](){ net_thread();}).detach();
-
-    // if(res != 0)
-    //     std::cout << "Error, Thread was not created\n";
 
     login(); //login to server
 }
@@ -49,6 +35,11 @@ void Client::logout()
 {
     Message msg(Message::LOGOUT);
     msg.player = id;
+    socket->send(msg, *socket);
+}
+
+void Client::sendReady(){
+    Message msg(Message::READYTOPLAY);
     socket->send(msg, *socket);
 }
 
@@ -70,11 +61,14 @@ void Client::net_thread()
         switch (msg.type)
         {
         case Message::START:
-            startGame = true;
+            startGame_ = true;
             break;
         case Message::CONNNECTED:
             id = msg.player;
             //init game
+            std::cout << "Ha llegado";
+
+            connectedGame_ = true;
             break;
         case Message::PLAYERPOS:
             /* code */

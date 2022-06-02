@@ -1,6 +1,10 @@
 #ifndef Server_H_
 #define Server_H_
 
+
+#include <string>
+#include <unistd.h>
+#include <memory>
 #include <vector>
 #include "../Utilities/Socket.h"
 
@@ -37,7 +41,7 @@ private:
      *  Lista de clientes conectados al servidor de Chat, representados por
      *  su socket
      */
-    std::vector<Socket*> clients;
+    std::vector<std::unique_ptr<Socket>> clients;
 
     static void* PlayGame(void*);
 

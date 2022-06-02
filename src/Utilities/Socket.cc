@@ -29,8 +29,6 @@ Socket::Socket(const char * address, const char * port):sd(-1)
     sd = sk;
     sa = *res->ai_addr;
     sa_len = res->ai_addrlen;
-
-    freeaddrinfo(res);
 }
 
 int Socket::recv(Serializable &obj, Socket * &sock)
@@ -61,13 +59,15 @@ int Socket::send(Serializable& obj, const Socket& sock)
 {
     //Serializar el objeto
     //Enviar el objeto binario a sock usando el socket sd
+    
     obj.to_bin();
-    ssize_t bytes = sendto(sock.sd, obj.data(), obj.size(), 0, &sock.sa, sock.sa_len);
+    ssize_t bytes = sendto(sock.sd, (void*)obj.data(), obj.size(), 0, (struct sockaddr*)&sock.sa, sock.sa_len);
 
-    if (bytes < 1) {
+    if (bytes <= 0 ) {
         std::cerr << "Error, mensaje enviado incorrectamente\n";
         return -1;
     }
+
     return 0;
 }
 

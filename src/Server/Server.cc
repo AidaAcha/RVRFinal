@@ -22,17 +22,20 @@ void Server::do_messages(){
     int numInputPlayers = 0;
     while(true) //receive messages
     {
-        Socket* client;
+        Socket* client = new Socket(*socket);
         Message msg;
         socket->recv(msg, client);
         std::cout << "LLEGA NUEVO MENSAJE...\n";
+
+        if(client == nullptr)
+            std::cout << "Error with client socket.\n";
 
         switch(msg.type)
         {
             case Message::LOGIN:
                 if(clients.size() < MAX_PLAYERS) //add player
                 {
-                    clients.push_back(client);
+                    clients.push_back(std::move(std::make_unique<Socket>(*client)));
                     std::cout << "Player " << clients.size() << " joined the game\n";
 
                     Message ms(Message::CONNNECTED);
@@ -89,7 +92,7 @@ void Server::do_messages(){
 }
 
 void Server::msg_to_clients(Message msg){
-    for(Socket* s : clients)
+    for(auto& s : clients)
         socket->send(msg, *s);
 }
 

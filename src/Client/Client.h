@@ -28,10 +28,15 @@ public:
      */
     void logout();
 
+    void sendReady();
+
     /**
      *  Rutina del thread de Red. Recibe datos de la red.
      */
     void net_thread();
+
+    inline bool startGame() {return startGame_;};
+    inline bool connectedGame() {return connectedGame_;};
 
 private:
 
@@ -52,7 +57,8 @@ private:
     /**
      * True cuando comienza la partida
      */
-    static bool startGame;
+    bool startGame_ = false;
+    bool connectedGame_ = false;
     static char id;
 };
 
