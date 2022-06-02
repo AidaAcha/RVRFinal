@@ -43,9 +43,7 @@ void Message::to_bin(){
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
         aux += sizeof(uint8_t);
 
-        memcpy((void*) aux, (void*) &player, sizeof(char));
-
-        std::cout << (int)type << player << "\n";
+        memcpy((void*) aux, (void*)&player, sizeof(char));
     } break;
     case PLAYERPOS: {
         alloc_data(sizeof(uint8_t) + sizeof(char) + (sizeof(PositionMessage) + 1));

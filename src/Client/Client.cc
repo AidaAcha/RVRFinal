@@ -45,10 +45,10 @@ void Client::sendReady(){
 
 void Client::net_thread()
 {
+    Socket* server = new Socket(*socket);
     while(true)
     {
         // //Recibir Mensajes de red
-        Socket* server;
         Message msg;
         int sk = socket->recv(msg, server);
         if(sk ==-1){
@@ -66,7 +66,7 @@ void Client::net_thread()
         case Message::CONNNECTED:
             id = msg.player;
             //init game
-            std::cout << "Ha llegado";
+            std::cout << "Client connected to server\n";
 
             connectedGame_ = true;
             break;

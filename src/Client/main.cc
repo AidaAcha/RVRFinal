@@ -22,7 +22,8 @@ int main()
     client.init("127.0.0.1", "7777", &game);
 
     bool applicationClosed = false;
-    //while(!client.connectedGame());
+    
+    while(!client.connectedGame());
 
     game.initGObjs();
 

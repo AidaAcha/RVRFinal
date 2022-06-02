@@ -35,7 +35,7 @@ void Server::do_messages(){
             case Message::LOGIN:
                 if(clients.size() < MAX_PLAYERS) //add player
                 {
-                    clients.push_back(std::move(std::make_unique<Socket>(*client)));
+                    clients.push_back(client);
                     std::cout << "Player " << clients.size() << " joined the game\n";
 
                     Message ms(Message::CONNNECTED);
