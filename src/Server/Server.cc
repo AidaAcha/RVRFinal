@@ -6,6 +6,7 @@ Server::Server(const char * s, const char * p): socket(s, p){
     socket.bind();
     clients.reserve(MAX_PLAYERS);
 }
+Server::~Server(){}
 
 void Server::do_messages(){
     std::cout << "Server up\n" << "Waiting for players\n";
