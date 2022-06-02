@@ -32,13 +32,13 @@ private:
 
     void initPlayers(); //Creates depending if Player 1 || Player 2 
     
-    std::vector<GameObject*> _gameObjects; //Active GameObjects
+    std::vector<GameObject*> gameObjects; //Active GameObjects
 
     std::vector<ServerPlayer*> players; //Active Players
 
     std::vector<ServerBullet*> bullets;
 
-    Server* _server = nullptr;
+    Server* server = nullptr;
 
     bool endGame = false; //true when a player died
 };

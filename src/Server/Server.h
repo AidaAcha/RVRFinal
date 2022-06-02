@@ -6,6 +6,7 @@
 
 class Message;
 class InputMessage;
+class ServerGame;
 
 class Server 
 {
@@ -28,6 +29,8 @@ public:
 
     void msg_to_clients(Message msg);
 
+    void createThreadGame();
+
 private:
 
     /**
@@ -36,10 +39,14 @@ private:
      */
     std::vector<Socket*> clients;
 
+    static void* PlayGame(void*);
+
     /**
      * Socket del servidor
      */
     Socket* socket;
+
+    static ServerGame* game;
 
     static bool allInputReceived;
     static bool endGame;

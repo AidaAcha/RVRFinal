@@ -1,7 +1,7 @@
 #ifndef ServerCannon_H_
 #define ServerCannon_H_
-#include "./Utilities/GameObject.h"
-#include "./Utilities/InputMessage.h"
+#include "../Utilities/GameObject.h"
+#include "../Utilities/InputMessage.h"
 
 class ServerCannon : public GameObject
 {

@@ -3,8 +3,8 @@
 
 #include <list>
 #include <vector>
-#include "./Utilities/GameObject.h"
-#include "./Utilities/InputMessage.h"
+#include "../Utilities/GameObject.h"
+#include "../Utilities/InputMessage.h"
 
 class ServerGame;
 class Vector2;
@@ -19,6 +19,8 @@ public:
     void render() override {}; //not used in server
 
     void setMessageInput(InputMessage* inp);
+
+    void lookAtDirection(Vector2 dir) override {};
 
 private:
 

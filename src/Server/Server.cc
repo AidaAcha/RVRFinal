@@ -1,10 +1,12 @@
 #include "Server.h"
 
 #include "../Utilities/Message.h"
+#include "ServerGame.h"
 
 bool Server::allInputReceived = false;
 bool Server::endGame = false;
 InputMessage* Server::inputPlayers = nullptr;
+ServerGame* Server::game = nullptr;
 
 Server::Server(const char * s, const char * p) {
     socket = new Socket(s, p);
@@ -67,7 +69,7 @@ void Server::do_messages(){
             case Message::READYTOPLAY: {
                 numPlayers++;
                 if(numPlayers >= MAX_PLAYERS){
-
+                    
                     msg_to_clients(Message(Message::START));
                     std::cout << "WarTanks ready to play" << "\n";
                 }
@@ -89,6 +91,29 @@ void Server::do_messages(){
 void Server::msg_to_clients(Message msg){
     for(Socket* s : clients)
         socket->send(msg, *s);
+}
+
+void Server::createThreadGame(){
+    pthread_t game_t;
+    pthread_attr_t game_attr;
+
+    game = new ServerGame(this);
+    game->init();
+
+    pthread_attr_init(&game_attr);
+    pthread_attr_setdetachstate(&game_attr, PTHREAD_CREATE_DETACHED);
+    
+    int result = pthread_create(&game_t, &game_attr, PlayGame, NULL);
+}
+
+void* Server::PlayGame(void*){
+    while(!endGame && game->playerDefeat())
+        if(allInputReceived){
+            game->setMessageInput(inputPlayers);
+            game->update();
+            allInputReceived = false;
+        }
+    pthread_exit(NULL);
 }
 
 Server::~Server(){
