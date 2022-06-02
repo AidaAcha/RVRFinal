@@ -13,7 +13,7 @@ class ServerPlayer : public GameObject
 {
 public:
     ServerPlayer(Vector2 v, ServerGame* gam, int playerID);
-    ~ServerPlayer();
+    ~ServerPlayer() {};
 
     void update() override;
     void render() override {}; //not used in server

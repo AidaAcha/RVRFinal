@@ -1,10 +1,12 @@
 #include "ServerPlayer.h"
 #include "../Utilities/InputMessage.h"
 #include "../Utilities/GameObject.h"
+#include "ServerGame.h"
 
 ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, int playerID)
-:  id(playerID)
+:  GameObject()
 {
+    id = playerID;
     _game = gam;
     pos = v;
     angle = 0;

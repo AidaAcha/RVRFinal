@@ -3,9 +3,10 @@
 #include "../Utilities/InputMessage.h"
 #include "ServerGame.h"
 
-ServerCannon::ServerCannon( ServerGame* gam, int c) 
-: game_(gam)
+ServerCannon::ServerCannon(ServerGame* gam, int c) 
+: GameObject()
 {
+    game_ = gam;
     angle = 0;
     id = c;
 

@@ -1,5 +1,5 @@
 #ifndef ServerCannon_H_
-#define ServerCannon_H_S
+#define ServerCannon_H_
 #include "../Utilities/GameObject.h"
 #include "../Utilities/InputMessage.h"
 
@@ -9,10 +9,13 @@ class ServerCannon : public GameObject
 {
 public:
     ServerCannon(ServerGame* gam, int idC);
-    ~ServerCannon();
+    ~ServerCannon() {};
 
-    void update();
+    void update() override {};
+    void render() override {};
     void setMessageInput(InputMessage* inp);
+
+    void lookAtDirection(Vector2 dir) override {};
 
 private:
 
