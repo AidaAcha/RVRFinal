@@ -18,12 +18,12 @@ public:
 
     void init();
 
-    void initGObjs();
     void gameLoop();
     void addGO(GameObject* go);
     void addGOMuro(GameObject* muro);
     std::vector<GameObject*> getObjs() { return gObjs; };
 private:
+    void initGObjs();
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;
     Map* gMapa;

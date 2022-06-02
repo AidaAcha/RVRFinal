@@ -10,7 +10,7 @@
 #include "GameObject.h"
 #include "Tank.h"
 
-void SDL_App::init(Game* _game){
+void SDL_App::init(){
     printf("Initializing SDL.\n");
     
     /* Initialize defaults, Video and Audio */
@@ -51,7 +51,8 @@ void SDL_App::init(Game* _game){
 
     printf("SDL initialized.\n");
 
-    game = _game;
+    game = new Game(this);
+    game->init();
 
 }
 

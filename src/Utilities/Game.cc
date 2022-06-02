@@ -11,8 +11,8 @@
 
 void Game::init(){
     
-    // initGObjs();
-    // gameLoop();
+    initGObjs();
+    gameLoop();
 }
 
 // We can add scenes instead of these if it gets bigger

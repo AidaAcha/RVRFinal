@@ -1,6 +1,7 @@
 .vscode/*.log
 .vscode/*
 *.o
+bin/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json

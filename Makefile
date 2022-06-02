@@ -1,5 +1,5 @@
 CXX		  := g++
-CXX_FLAGS := --std=c++17 -I/usr/include/SDL2 
+CXX_FLAGS := --std=c++17 -I/usr/include/SDL2
  
 
 BIN		:= bin
@@ -8,7 +8,7 @@ LIB		:= lib
 SERVER 	:= Server
 CLIENT 	:= Client
 
-LIBRARIES	:= -L/usr/lib/x86_64-linux-gnu -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2 -lSDL2main -lpthread
+LIBRARIES	:= -L/usr/lib/x86_64-linux-gnu -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2
 EXECUTABLE	:= ClientWarTanks
 SERVER_EXE	:= ServerWarTanks
 SERVER_SRC := src/Server
