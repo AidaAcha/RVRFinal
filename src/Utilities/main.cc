@@ -1,3 +1,5 @@
+//GENEREAL MAIN
+
 #include <iostream>
 #include "SDL_App.h"
 #include "Game.h"
