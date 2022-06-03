@@ -60,4 +60,6 @@ ClientPlayer::~ClientPlayer(){
 
     delete dstRect;
     dstRect = nullptr;
+
+    g = nullptr;
 }

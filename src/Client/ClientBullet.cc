@@ -18,6 +18,8 @@ ClientBullet::ClientBullet(Vector2 pos_, const char* tex_, int width_, int heigh
     currentFrame->w = textW;
     currentFrame->h = textH;
 
+    type = GameObject::Bullet_;
+
     if(sdlApp != nullptr)
     {
         g = sdlApp->getGame();
@@ -50,4 +52,6 @@ ClientBullet::~ClientBullet()
 
     delete dstRect;
     dstRect = nullptr;
+
+    g = nullptr;
 }

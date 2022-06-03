@@ -25,6 +25,13 @@ private:
     float speed;
     bool left = false; bool right = false;
     bool shoot = false;
+
+    Game* g;
+
+    SDL_App* sdlApp;
+    SDL_Rect* currentFrame;
+    SDL_Rect* dstRect;
+    SDL_Texture* tex;
 };
 
 #endif
