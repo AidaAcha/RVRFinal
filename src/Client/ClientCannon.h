@@ -16,7 +16,6 @@ public:
 
     void update() override {};
     void render() override;
-    bool handleInput(SDL_Event* event) override {return true;};
 
     void setAngle(double a);
 

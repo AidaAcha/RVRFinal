@@ -15,6 +15,8 @@ public:
 
     void lookAtDirection(Vector2 dir) override {};
 
+    void setDir(Vector2 d) {dir = d;};
+
     void setPosition(Vector2 p) {pos = p;};
 
 private:

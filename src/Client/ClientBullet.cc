@@ -1,5 +1,5 @@
 #include "ClientBullet.h"
-#include "../Utilities/SDL_App.h"
+#include "SDL_App.h"
 #include "../Utilities/GameObject.h"
 #include <SDL_image.h>
 

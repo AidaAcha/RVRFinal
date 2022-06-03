@@ -18,7 +18,6 @@ public:
     ~ClientPlayer();
 
     void update() override;
-    bool handleInput(SDL_Event* event) override {return true;};
 
     void setPosition(Vector2 pos_);
     void lookAtDirection(Vector2 dir) override {};
