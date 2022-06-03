@@ -6,9 +6,8 @@
 #include <SDL2/SDL_image.h>
 
 
-#include "Game.h"
-#include "GameObject.h"
-#include "Tank.h"
+#include "../Client/Game.h"
+#include "../Utilities/GameObject.h"
 
 void SDL_App::init(Game* _game){
     printf("Initializing SDL.\n");

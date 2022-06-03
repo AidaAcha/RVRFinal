@@ -1,0 +1,33 @@
+#include "ClientPlayer.h"
+#include "SDL_App.h"
+#include <SDL_image.h>
+#include "ClientCannon.h"
+#include "Game.h"
+
+ClientPlayer::ClientPlayer(int id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
+    GameObject(pos_, text, width_, height_, app_), lastpos(pos_) {
+    ;
+    
+    id == 0 ?
+        cannon = new ClientCannon("./resources/Canon.png", Vector2(0,0), width_, height_, app_)
+        : cannon = new ClientCannon("./resources/Canon2.png", Vector2(0,0), width_, height_, app_);
+
+    type = Type::Tank_;
+    speed = 1.0f;
+
+    cannon->setPosition(Vector2(pos.x, pos.y - height / 3));
+
+    if(sdlApp != nullptr)
+    {
+        g = sdlApp->getGame();
+    }
+}
+
+void ClientPlayer::update(){}
+
+void ClientPlayer::setPosition(Vector2 pos_){
+    pos = pos_;
+}
+
+ClientPlayer::~ClientPlayer(){
+}

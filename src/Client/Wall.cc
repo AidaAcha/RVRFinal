@@ -1,5 +1,5 @@
 #include "Wall.h"
-#include "GameObject.h"
+#include "../Utilities/GameObject.h"
 #include <SDL_image.h>
 #include "Vector2.h"
 

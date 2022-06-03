@@ -20,8 +20,11 @@ public:
     void setCDirR(bool d) { cRight = d;};
     void setCShoot(bool d) { cShoot = d;};
 
+    void setPosition(Vector2 p) {pos = p;};
+
 private:
 
+    Vector2 angleToVector();
     void Input();
     void Move();
 

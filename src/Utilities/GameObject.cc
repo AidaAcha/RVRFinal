@@ -1,8 +1,8 @@
 #include "GameObject.h"
+#include "../Client/Game.h"
 #include <SDL2/SDL_rect.h>
 #include <SDL2/SDL_image.h>
 #include "SDL_App.h"
-#include "Game.h"
 
 GameObject::GameObject(Vector2 _pos, const char* _tex, int width_, int height_, SDL_App* _sdlApp)
 : pos(_pos), sdlApp(_sdlApp), width(width_), height(height_)

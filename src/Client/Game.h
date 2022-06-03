@@ -9,7 +9,7 @@ class SDL_Renderer;
 class GameObject;
 class SDL_App;
 class Map;
-class Tank;
+class ClientPlayer;
 
 class Game {
 public:
@@ -27,7 +27,7 @@ private:
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;
     Map* gMapa;
-    Tank* player;
+    std::vector<ClientPlayer*> players;
     std::vector<GameObject*> murosMap;
     char id;
 };

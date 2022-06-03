@@ -1,5 +1,5 @@
 #include "Map.h"
-#include "Game.h"
+#include "../Client/Game.h"
 #include "SDL_App.h"
 #include <fstream>
 #include "Wall.h"
@@ -20,18 +20,6 @@ void Map::LoadMap(const char * path)
     const char* linea;
 
     leer_archivo(path);
-
-    //AddTile(200,0);
-    //AddTile(0,200);
-    //AddTile(0,270);
-    //AddTile(270,0);
-    //AddTile(270, 270);
-    //AddTile(200,200);
-    //AddTile(270,200);
-    //AddTile(200,270);
-    //AddTile(340, 270);
-    //AddTile(270,340);
-    //AddTile(480, 270);
 
    
 }

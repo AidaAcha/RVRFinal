@@ -1,5 +1,5 @@
-#ifndef ServerCannon_H_
-#define ServerCannon_H_
+#ifndef ServerBullet_H_
+#define ServerBullet_H_
 #include "../Utilities/GameObject.h"
 
 class ServerGame;
@@ -14,6 +14,8 @@ public:
     void render() override {};
 
     void lookAtDirection(Vector2 dir) override {};
+
+    void setPosition(Vector2 p) {pos = p;};
 
 private:
 

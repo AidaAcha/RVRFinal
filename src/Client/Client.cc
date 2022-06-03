@@ -2,7 +2,7 @@
 
 #include "../Utilities/Message.h"
 #include "../Utilities/Socket.h"
-#include "../Utilities/Game.h"
+#include "Game.h"
 #include "../Client/Input.h"
 #include "../Utilities/InputMessage.h"
 #include <string>

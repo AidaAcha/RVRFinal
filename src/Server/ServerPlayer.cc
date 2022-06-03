@@ -6,14 +6,20 @@ ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, int playerID)
 :  GameObject()
 {
     sc = new ServerCannon(gam, playerID);
+
     id = playerID;
     _game = gam;
     pos = v;
+
+    sc->setPosition(Vector2(pos.x, pos.y - height / 3));
+
     angle = 0;
     type = GameObject::Tank_;
     dir = Vector2(0,0);
     speed = 1.0;
 }
+
+void ServerPlayer::setPosition(Vector2 p) {pos = p;};
 
 void ServerPlayer::update()
 {
@@ -65,8 +71,23 @@ void ServerPlayer::Input()
 
 void ServerPlayer::Move()
 {
+    lookAtDirection(dir);
+
     dir *= speed;
     pos += dir;
+
+    dir.clear();
+}
+
+void ServerPlayer::lookAtDirection(Vector2 dir){
+    if(dir == Vector2(1,0))
+        angle = 90;
+    else if(dir == Vector2(-1,0))
+        angle = -90;
+    else if(dir == Vector2(0,1))
+        angle = 180;
+    else if(dir == Vector2(0,-1))
+        angle = 0;
 }
 
 void ServerPlayer::setMessageInput(InputMessage* inp)

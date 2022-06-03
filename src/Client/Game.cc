@@ -3,11 +3,11 @@
 #include "SDL_App.h"
 #include "SDL_render.h"
 
-#include "GameObject.h"
-#include "Tank.h"
+#include "../Utilities/GameObject.h"
+#include "ClientPlayer.h"
 
 #include "SDL_events.h"
-#include "Vector2.h"
+#include "../Utilities/Vector2.h"
 
 // We can add scenes instead of these if it gets bigger
 void Game::initGObjs(){
@@ -23,12 +23,12 @@ void Game::initGObjs(){
     const char* tex = "./resources/Tank.png";
     Vector2 posTank(0,0);
 
-    player = new Tank(id, tex, posTank, 32, 32, sdlApp);
-    player->setPosition(Vector2(400,50));
+    players.push_back(new ClientPlayer(id, tex, posTank, 32, 32, sdlApp));
+    players.back()->setPosition(Vector2(400,50));
 
     tex = "./resources/Tank2.png";
-    player = new Tank(id, tex, posTank, 32, 32, sdlApp);
-    player->setPosition(Vector2(400,550));
+    players.push_back(new ClientPlayer(id, tex, posTank, 32, 32, sdlApp));
+    players.back()->setPosition(Vector2(400,550));
 
     const char* mapPath = "mapa.txt";
     gMapa = new Map(sdlApp);

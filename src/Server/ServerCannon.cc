@@ -1,5 +1,6 @@
 #include "ServerCannon.h"
 #include "ServerGame.h"
+#include "ServerBullet.h"
 
 ServerCannon::ServerCannon(ServerGame* gam, int c) 
 : GameObject()
@@ -13,6 +14,11 @@ ServerCannon::ServerCannon(ServerGame* gam, int c)
 void ServerCannon::setMessageInput(InputMessage* inp)
 {
     input = inp;
+}
+
+Vector2 ServerCannon::angleToVector(){
+    float angleBueno = angle - 90;
+    return Vector2(cos(angleBueno * acos(-1.0) / 180), sin(angleBueno * acos(-1.0) / 180));
 }
 
 void ServerCannon::update()
@@ -29,6 +35,12 @@ void ServerCannon::update()
     }
     else if(cShoot)
     {
+        Vector2 v = angleToVector();
+        ServerBullet* bullet = new ServerBullet(game_, id, game_->getBulletCount());
+        bullet->setAngle(angle);
+        bullet->setPosition(pos);
         cShoot = false;
     }
+
+
 }

@@ -26,6 +26,8 @@ public:
 
     inline bool playerDefeat(){ return endGame; };
 
+    int getBulletCount() { return bullets.size(); };
+
     void playerHit();
 
 private: 

@@ -22,15 +22,15 @@ public:
 
     void setMessageInput(InputMessage* inp);
 
-    void lookAtDirection(Vector2 dir) override {};
+    void lookAtDirection(Vector2 dir) override;
+
+    void setPosition(Vector2 pos_);
 
 private:
 
     void playerHandleInput();
     void Input();
     void Move();
-
-    void setPosition(Vector2 pos_);
     
     int id = 0; //player id
 
