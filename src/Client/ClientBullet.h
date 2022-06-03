@@ -5,7 +5,7 @@
 class Vector2;
 class ClientBullet : public GameObject
 {
-    public:
+public:
     ClientBullet(Vector2 pos_, const char* tex_, int width_, int height_, SDL_App* app_);
     ~ClientBullet();
     Type getType() { return type; };
@@ -14,6 +14,13 @@ class ClientBullet : public GameObject
     void lookAtDirection() {};
     void setPosition(Vector2 pos_);
 
+private:
+    Game* g;
+
+    SDL_App* sdlApp;
+    SDL_Rect* currentFrame;
+    SDL_Rect* dstRect;
+    SDL_Texture* tex;
 };
 
 #endif

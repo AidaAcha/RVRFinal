@@ -18,7 +18,8 @@ public:
     ~ClientPlayer();
 
     void update() override;
-
+    
+    void render() override;
     void setPosition(Vector2 pos_);
     void lookAtDirection(Vector2 dir) override {};
     Vector2 getlastPosition() { return lastpos; };
@@ -29,6 +30,11 @@ private:
     ClientCannon* cannon;
     Game* g;
     Vector2 lastpos;
+
+    SDL_App* sdlApp;
+    SDL_Rect* currentFrame;
+    SDL_Rect* dstRect;
+    SDL_Texture* tex;
 };
 
 #endif

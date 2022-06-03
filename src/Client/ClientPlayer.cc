@@ -5,8 +5,20 @@
 #include "Game.h"
 
 ClientPlayer::ClientPlayer(int id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
-    GameObject(pos_, text, width_, height_, app_), lastpos(pos_) {
-    ;
+    GameObject(), lastpos(pos_) 
+    {
+    pos = pos_;
+
+    width = width_; height = height_;
+
+    int textW, textH;
+    tex = sdlApp->loadTexture(text, textW, textH);
+    currentFrame = new SDL_Rect();
+    dstRect = new SDL_Rect();
+    currentFrame->x = pos.x;
+    currentFrame->y = pos.y;
+    currentFrame->w = textW;
+    currentFrame->h = textH;
     
     id == 0 ?
         cannon = new ClientCannon("./resources/Canon.png", Vector2(0,0), width_, height_, app_)
@@ -25,9 +37,27 @@ ClientPlayer::ClientPlayer(int id, const char* text, Vector2 pos_, int width_, i
 
 void ClientPlayer::update(){}
 
+void ClientPlayer::render()
+{
+    dstRect->x = pos.x;
+    dstRect->y = pos.y;
+    dstRect->w = width;
+    dstRect->h = height;
+
+    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, dstRect, angle, NULL, SDL_FLIP_NONE);
+}
+
 void ClientPlayer::setPosition(Vector2 pos_){
     pos = pos_;
 }
 
 ClientPlayer::~ClientPlayer(){
+    SDL_DestroyTexture(tex);
+    tex =  nullptr;
+
+    delete currentFrame;
+    currentFrame = nullptr;
+
+    delete dstRect;
+    dstRect = nullptr;
 }
