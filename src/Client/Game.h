@@ -29,6 +29,7 @@ public:
     void updateGObjs();
 
     void renderBackground() {};
+    void deleteBullet(int n);
 
     inline std::vector<ClientPlayer*> getPlayers() { return players; };
     inline std::vector<ClientBullet*> getBullets() { return bullets; };

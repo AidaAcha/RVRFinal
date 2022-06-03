@@ -77,6 +77,16 @@ void Game::updateGObjs(){
         gObjs[i]->update();
 }
 
+void Game::deleteBullet(int n){
+    for(int i = 0; i < gObjs.size(); i++){
+        if(gObjs[i] == bullets[n]){
+            gObjs.erase(gObjs.begin() + i);
+            break;
+        }
+    }
+    bullets[n] = nullptr;
+}
+
 void Game::tryCreateBullet(Message msg){
     if(msg.bulletNum >= 0 && msg.bulletNum < MAX_BULLETS){
          if(!bullets[msg.bulletNum]){

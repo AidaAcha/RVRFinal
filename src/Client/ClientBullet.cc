@@ -73,6 +73,8 @@ void ClientBullet::sendCollisionMsg(ClientPlayer* p){
     if(p)
     msg.lives = p->lives;
     else msg.lives = 5;
+
+    g->deleteBullet(bulletN);
 }
 
 ClientBullet::~ClientBullet()

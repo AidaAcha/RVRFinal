@@ -98,7 +98,7 @@ bool SDL_App::insideRect(Vector2& pos, SDL_Rect& rect) {
         pos.x < rect.x + rect.w && pos.y < rect.y + rect.h);
 }
 
-bool SDL_App::outsideMap(Vector2& pos){
+bool SDL_App::outsideMap(Vector2 pos){
     return (pos.x < 0 || pos.x > windowW || pos.y < 0 || pos.y > windowH);
 }
 

@@ -21,8 +21,6 @@ void ServerGame::init()
     initPlayers();
     start = std::chrono::high_resolution_clock::now();
 
-    // for(int i = 0; i < 10; i++)
-    //     bullets.push_back(nullptr);
 }
 
 void ServerGame::checkBullets(){
@@ -41,15 +39,10 @@ void ServerGame::checkBullets(){
             sb->setAngle(angle);
             sb->setDir(players[i]->getCannon()->angleToVector());
 
-            // int j = 0;
-            // while(j < 10 && bullets[j]) j++;
-            // if(j == 10) return;
-            // bullets[j] = sb;
-
             bullets.push_back(sb);
 
             gameObjects.push_back(sb);
-            std::cout << "new bullet \n";
+            std::cout << "New Bullet created. \n";
         }
     }
 }
