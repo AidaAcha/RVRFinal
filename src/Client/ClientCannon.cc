@@ -6,7 +6,7 @@
 #include "Game.h"
 
 ClientCannon::ClientCannon(const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
-    GameObject() {
+    GameObject(), sdlApp(app_) {
     
     pos = pos_;
     width = width_; height = height_;
@@ -15,8 +15,8 @@ ClientCannon::ClientCannon(const char* text, Vector2 pos_, int width_, int heigh
     tex = sdlApp->loadTexture(text, textW, textH);
     currentFrame = new SDL_Rect();
     dstRect = new SDL_Rect();
-    currentFrame->x = pos.x;
-    currentFrame->y = pos.y;
+    currentFrame->x = 0;
+    currentFrame->y = 0;
     currentFrame->w = textW;
     currentFrame->h = textH;
 

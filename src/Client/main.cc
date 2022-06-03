@@ -41,9 +41,11 @@ int main()
     while(!exit){
         app->clearWindow();
 
+        game.renderGObjs();
+
         exit = !client.getInput();
         client.sendInput();
-        game.renderGObjs();
+
     }
     
     

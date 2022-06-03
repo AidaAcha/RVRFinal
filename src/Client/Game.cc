@@ -20,15 +20,17 @@ void Game::initGObjs(){
         std::cout << "Error, player id is out bounds: "+ id + '\n';
     }
 
-    const char* tex = "./resources/Tank.png";
     Vector2 posTank(0,0);
 
-    players.push_back(new ClientPlayer(id, tex, posTank, 32, 32, sdlApp));
+    ClientPlayer* player1 =  new ClientPlayer(id, "./resources/Tank.png", posTank, 32, 32, sdlApp); 
+    players.push_back(player1);
     players.back()->setPosition(Vector2(400,50));
+    gObjs.push_back(player1);
 
-    tex = "./resources/Tank2.png";
-    players.push_back(new ClientPlayer(id, tex, posTank, 32, 32, sdlApp));
+    ClientPlayer* player2 =  new ClientPlayer(id, "./resources/Tank.png", posTank, 32, 32, sdlApp);     
+    players.push_back(player2);
     players.back()->setPosition(Vector2(400,550));
+    gObjs.push_back(player2);
 
     const char* mapPath = "mapa.txt";
     gMapa = new Map(sdlApp);

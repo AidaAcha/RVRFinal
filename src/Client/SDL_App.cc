@@ -6,7 +6,7 @@
 #include <SDL2/SDL_image.h>
 
 
-#include "../Client/Game.h"
+#include "Game.h"
 #include "../Utilities/GameObject.h"
 
 void SDL_App::init(Game* _game){
