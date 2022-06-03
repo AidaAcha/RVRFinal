@@ -25,7 +25,7 @@ public:
     void lookAtDirection(Vector2 dir) override {};
     Vector2 getlastPosition() { return lastpos; };
 
-    void setCannonAngle(double a) {cannon->setAngle(a);};
+    void setCannonAngle(double a);
 
     SDL_Texture* getTex() { return tex; };
     SDL_Rect* getCurrentFrame() { return currentFrame; };

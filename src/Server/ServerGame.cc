@@ -37,7 +37,7 @@ void ServerGame::initPlayers()
     players.push_back(player);
 
     posTank = Vector2(400,550);
-    
+
     player = new ServerPlayer(posTank, this, '1');
     gameObjects.push_back(player);
     players.push_back(player);
@@ -48,6 +48,10 @@ void ServerGame::setMessageInput(InputMessage* input)
     for(int i = 0; i < players.size(); i++)
         players[i]->setMessageInput(&input[i]);
 } 
+
+void ServerGame::addGO(GameObject* go){
+    gameObjects.push_back(go);
+}
 
 //Relocates fruit once eaten, chooses new fruit location
 void ServerGame::playerHit()

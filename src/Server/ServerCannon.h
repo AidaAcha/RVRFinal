@@ -8,12 +8,11 @@ class ServerGame;
 class ServerCannon : public GameObject
 {
 public:
-    ServerCannon(ServerGame* gam, int idC);
+    ServerCannon(ServerGame* gam, char idC);
     ~ServerCannon() {};
 
     void update() override;
     void render() override {};
-    void setMessageInput(InputMessage* inp);
 
     void lookAtDirection(Vector2 dir) override {};
     void setCDirL(bool d) { cLeft = d;};
@@ -31,8 +30,7 @@ private:
     void Move();
 
     ServerGame * game_;
-    int id = 0;
-    InputMessage* input;
+    char id = '0';
 
     bool cLeft = false;
     bool cRight = false;

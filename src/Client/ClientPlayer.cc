@@ -56,6 +56,10 @@ void ClientPlayer::setPosition(Vector2 pos_){
     cannon->setPosition(Vector2(pos.x, pos.y - height / 3));
 }
 
+void ClientPlayer::setCannonAngle(double a){
+    cannon->setAngleCannon(a);
+}
+
 ClientPlayer::~ClientPlayer(){
     SDL_DestroyTexture(tex);
     tex =  nullptr;

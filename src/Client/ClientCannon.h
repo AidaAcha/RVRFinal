@@ -18,7 +18,7 @@ public:
     void update() override {};
     void render() override;
 
-    void setAngle(double a);
+    void setAngleCannon(double a);
 
     void setPosition(Vector2 pos_);
     void lookAtDirection(Vector2 dir) override {};
@@ -28,6 +28,8 @@ private:
     bool shoot = false;
 
     Game* g;
+
+    double angleCannon = 0;
 
     SDL_App* sdlApp;
     SDL_Rect* currentFrame;

@@ -37,16 +37,16 @@ void ClientCannon::render(){
     dstRect->h = height;
 
     SDL_Point center = {width/2, height - 5};
-    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, dstRect, angle, &center, SDL_FLIP_NONE);
+
+    SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, dstRect, angleCannon, &center, SDL_FLIP_NONE);
 }
 
 void ClientCannon::setPosition(Vector2 pos_){
     pos = pos_;
 }
 
-void ClientCannon::setAngle(double a){
-    std::cout << a << "\n";
-    angle = a;
+void ClientCannon::setAngleCannon(double a){
+    angleCannon = a;
 }
 
 ClientCannon::~ClientCannon(){

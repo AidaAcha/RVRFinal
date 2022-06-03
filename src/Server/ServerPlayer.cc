@@ -19,6 +19,8 @@ ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, char playerID)
     type = GameObject::Tank_;
     dir = Vector2(0,0);
     speed = 1.0;
+
+    _game->addGO(sc);
 }
 
 void ServerPlayer::setPosition(Vector2 p) {pos = p;};

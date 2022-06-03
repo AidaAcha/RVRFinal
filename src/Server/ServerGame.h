@@ -26,6 +26,8 @@ public:
 
     inline bool playerDefeat(){ return endGame; };
 
+    void addGO(GameObject* go);
+
     int getBulletCount() { return bullets.size(); };
 
     void playerHit();

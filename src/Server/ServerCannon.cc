@@ -5,18 +5,13 @@
 #include "../Utilities/PositionMessage.h"
 #include "../Utilities/Message.h"
 
-ServerCannon::ServerCannon(ServerGame* gam, int c) 
+ServerCannon::ServerCannon(ServerGame* gam, char c) 
 : GameObject()
 {
     game_ = gam;
     angle = 0;
     id = c;
 
-}
-
-void ServerCannon::setMessageInput(InputMessage* inp)
-{
-    input = inp;
 }
 
 Vector2 ServerCannon::angleToVector(){
@@ -28,13 +23,11 @@ void ServerCannon::update()
 {
     if(cLeft)
     {
-        angle = angle - 0.1;
-        cLeft = false;
+        angle = angle - 0.5;
     }
     else if(cRight)
     {
-        angle = angle + 0.1;
-        cRight = false;
+        angle = angle + 0.5;
     }
     else if(cShoot)
     {
@@ -46,7 +39,10 @@ void ServerCannon::update()
         cShoot = false;
     }
 
+    if(cRight || cLeft)
     sendPositionMessage();
+
+    cRight = false; cLeft = false;
 }
 
 void ServerCannon::sendPositionMessage(){
