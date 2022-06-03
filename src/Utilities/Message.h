@@ -29,7 +29,7 @@ public:
     Message(const uint8_t typ, InputMessage inp, char play);
     Message(const uint8_t typ, PositionMessage b, int bNum);
     Message(const uint8_t typ, PositionMessage p, char play);
-    Message(const uint8_t typ, int bNum, char play);
+    Message(const uint8_t typ, int bNum, char play, int live);
 
     void to_bin() override;
 
@@ -39,6 +39,7 @@ public:
 
     char player; 
     int bulletNum;
+    int lives;
     
     InputMessage input;
     PositionMessage pos;
