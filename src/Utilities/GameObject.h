@@ -25,6 +25,7 @@ public:
     virtual void lookAtDirection(Vector2 dir) = 0;
     
     void setAngle(float a) {angle = a;};
+    double getAngle() {return angle;};
 
 protected:
     Type type;

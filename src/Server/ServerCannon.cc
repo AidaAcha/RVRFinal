@@ -31,12 +31,12 @@ void ServerCannon::update()
     }
     else if(cShoot)
     {
-        Vector2 v = angleToVector();
-        ServerBullet* bullet = new ServerBullet(game_, id, game_->getBulletCount());
-        bullet->setDir(v);
-        bullet->setAngle(angle);
-        bullet->setPosition(pos);
-        cShoot = false;
+        // Vector2 v = angleToVector();
+        // ServerBullet* bullet = new ServerBullet(game_, id, game_->getBulletCount());
+        // bullet->setDir(v);
+        // bullet->setAngle(angle);
+        // bullet->setPosition(pos);
+        // cShoot = false;
     }
 
     if(cRight || cLeft)

@@ -5,8 +5,11 @@
 #include "../Utilities/InputMessage.h"
 #include "../Utilities/PositionMessage.h"
 #include "../Utilities/Message.h"
+#include "ServerBullet.h"
 
 #include "../Utilities/Vector2.h"
+#include "ServerCannon.h"
+#include <chrono>
 
 #include <iostream>
 
@@ -16,11 +19,35 @@ ServerGame::ServerGame(Server* sv) : server(sv) {}
 void ServerGame::init()
 {
     initPlayers();
+    start = std::chrono::high_resolution_clock::now();
+}
+
+void ServerGame::checkBullets(){
+    for(int i = 0; i < 2; i++){
+        if(players[i]->getMessageInput()->shoot && bullets.size() < MAX_BULLETS){
+            players[i]->getMessageInput()->shoot = false;
+
+            auto time_passed = std::chrono::high_resolution_clock::now() - start;
+            using namespace std::chrono_literals;
+            if(time_passed < 1s) continue;
+            start = std::chrono::high_resolution_clock::now();
+
+            ServerBullet* sb = new ServerBullet(this, i, bullets.size());
+            sb->setPosition(players[i]->getPosition());
+            double angle = players[i]->getCannon()->getAngle();
+            sb->setAngle(angle);
+            sb->setDir(players[i]->getCannon()->angleToVector());
+            bullets.push_back(sb);
+            gameObjects.push_back(sb);
+            std::cout << "nueva bala server \n";
+        }
+    }
 }
 
 //Updates active GameObjects
 void ServerGame::update()
 {
+    checkBullets();
     for(auto* o : gameObjects)
         o->update();
 }

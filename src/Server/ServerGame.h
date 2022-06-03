@@ -1,6 +1,7 @@
 #ifndef _H_ServerGame_H_
 #define _H_ServerGame_H_
 #include <vector>
+#include <chrono>
 
 class Server;
 class GameObject;
@@ -32,7 +33,9 @@ public:
 
     void playerHit();
 
+
 private: 
+    void checkBullets();
 
     void initPlayers(); //Creates depending if Player 1 || Player 2 
     
@@ -45,5 +48,9 @@ private:
     Server* server = nullptr;
 
     bool endGame = false; //true when a player died
+
+    std::chrono::_V2::system_clock::time_point start; //timer
+
+    const int MAX_BULLETS = 10;
 };
 #endif
