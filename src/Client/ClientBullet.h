@@ -14,6 +14,10 @@ public:
     void lookAtDirection() {};
     void setPosition(Vector2 pos_);
 
+    SDL_Texture* getTex() { return tex; };
+    SDL_Rect* getCurrentFrame() { return currentFrame; };
+    SDL_Rect* getDstRect() {return dstRect;};
+
 private:
     Game* g;
 

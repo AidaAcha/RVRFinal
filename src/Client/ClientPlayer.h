@@ -24,6 +24,10 @@ public:
     void lookAtDirection(Vector2 dir) override {};
     Vector2 getlastPosition() { return lastpos; };
 
+    SDL_Texture* getTex() { return tex; };
+    SDL_Rect* getCurrentFrame() { return currentFrame; };
+    SDL_Rect* getDstRect() {return dstRect;};
+
 private:
     Vector2 input;
     float speed;
