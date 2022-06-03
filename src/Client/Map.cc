@@ -64,6 +64,7 @@ void Map::leer_archivo(const char *nombre){
             }
         }
     }
-    printf("\n");
+    
+    std::cout << "\n";
     fclose(f);
 };
