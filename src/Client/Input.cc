@@ -3,6 +3,7 @@
 #include "SDL2/SDL.h"
 #include "SDL_quit.h"
 #include "SDL_events.h"
+#include <iostream>
 
 bool Input::update(){
     
@@ -32,7 +33,12 @@ bool Input::update(){
                     inputInfo.down = true;
                     break;
                 case SDLK_SPACE:
-                    inputInfo.shoot = true;
+                    if(event.key.repeat == 0){
+                        inputInfo.shoot = true;
+                    }
+                    else{
+                        inputInfo.shoot = false;
+                     }
                     break;
                 case SDLK_LEFT:
                     inputInfo.aimleft = true;

@@ -21,12 +21,15 @@ public:
     void render() override {}; //not used in server
 
     void setMessageInput(InputMessage* inp);
+    InputMessage* getMessageInput() {return input;};
 
     void lookAtDirection(Vector2 dir) override;
 
     void setPosition(Vector2 pos_);
 
     void sendPositionMessage();
+
+    ServerCannon* getCannon() {return sc;};
 
 private:
 

@@ -10,6 +10,8 @@ class GameObject;
 class SDL_App;
 class Map;
 class ClientPlayer;
+class ClientBullet;
+class Message;
 
 class Game {
 public:
@@ -24,13 +26,18 @@ public:
     inline char getId() {return id;};
     void renderGObjs();
     inline std::vector<ClientPlayer*> getPlayers() { return players; };
+    inline std::vector<ClientBullet*> getBullets() { return bullets; };
+    inline int getMaxBullets() {return MAX_BULLETS;};
+    void tryCreateBullet(Message msg);
 private:
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;
     Map* gMapa;
     std::vector<ClientPlayer*> players;
+    std::vector<ClientBullet*> bullets;
     std::vector<GameObject*> murosMap;
     char id;
+    const int MAX_BULLETS = 10;
 };
 
 #endif

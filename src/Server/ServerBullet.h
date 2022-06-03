@@ -7,7 +7,7 @@ class ServerGame;
 class ServerBullet : public GameObject
 {
 public:
-    ServerBullet(ServerGame* gam, int idB, int numB);
+    ServerBullet(ServerGame* gam, char idB, int numB);
     ~ServerBullet() {};
 
     void update() override;
@@ -19,10 +19,12 @@ public:
 
     void setPosition(Vector2 p) {pos = p;};
 
+    void sendPositionMessage();
+
 private:
 
     Vector2 dir;
-    ServerGame * game_;
+    ServerGame* game_;
     int id = 0;
     int bulletNum = 0;
     int speed;

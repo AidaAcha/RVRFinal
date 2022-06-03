@@ -17,7 +17,7 @@ public:
     Type getType() { return type; };
     void render();
     void update() {};
-    void lookAtDirection() {};
+    void lookAtDirection(Vector2 dir) {};
     void setPosition(Vector2 pos_);
 
     SDL_Texture* getTex() { return tex; };

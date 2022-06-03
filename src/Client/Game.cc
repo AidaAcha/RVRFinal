@@ -9,6 +9,10 @@
 #include "SDL_events.h"
 #include "../Utilities/Vector2.h"
 
+#include "../Utilities/Message.h"
+#include "../Utilities/PositionMessage.h"
+#include "ClientBullet.h"
+
 // We can add scenes instead of these if it gets bigger
 void Game::initGObjs(){
 
@@ -46,6 +50,10 @@ void Game::initGObjs(){
     gObjs.push_back(player2);
     }
     
+   for (int i = 0; i < MAX_BULLETS; ++i){
+        bullets.push_back(nullptr);
+    }
+
     gMapa = new Map(sdlApp);
     gMapa->LoadMap("mapa.txt");
 }
@@ -64,6 +72,22 @@ void Game::renderGObjs(){
     sdlApp->renderPresent();
 }
 
+void Game::tryCreateBullet(Message msg){
+    if(msg.bulletNum >= 0 && msg.bulletNum < MAX_BULLETS){
+         if(!bullets[msg.bulletNum]){
+            bullets[msg.bulletNum] = new ClientBullet(
+                Vector2(msg.pos.x, msg.pos.y), "./resources/bala.png", 50,50, sdlApp
+            );
+                bullets.push_back(bullets[msg.bulletNum]);
+                gObjs.push_back(bullets[msg.bulletNum]);
+         }
+         else{
+            bullets[msg.bulletNum]->setPosition(Vector2(msg.pos.x, msg.pos.y));
+         }
+         bullets[msg.bulletNum]->setAngle(msg.pos.angle);
+        
+    }    
+}
 
 Game::~Game(){
     for(int i = 0; i < gObjs.size(); i++)

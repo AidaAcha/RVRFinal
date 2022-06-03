@@ -23,9 +23,9 @@ public:
 
     void setPosition(Vector2 p) {pos = p;};
 
+    Vector2 angleToVector();
 private:
 
-    Vector2 angleToVector();
     void Input();
     void Move();
 

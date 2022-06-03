@@ -107,7 +107,7 @@ void Client::net_thread()
             player->setCannonAngle(msg.pos.angle);
         } break;
         case Message::BULLETPOS:
-            /* code */
+            game->tryCreateBullet(msg);
             break;
         case Message::DEAD:
             /* code */
