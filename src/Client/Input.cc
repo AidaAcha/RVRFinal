@@ -35,10 +35,8 @@ bool Input::update(){
                 case SDLK_SPACE:
                     if(event.key.repeat == 0){
                         inputInfo.shoot = true;
-                        std::cout << "una vez \n";
                     }
                     else{
-                        std::cout << "repe \n";
                         inputInfo.shoot = false;
                      }
                     break;
