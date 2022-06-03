@@ -66,6 +66,9 @@ bool Client::getInput(){
     return input->update();
 }
 
+void Client::sendMessage(Message msg){
+    socket->send(msg, *socket);
+}
 
 void Client::net_thread()
 {

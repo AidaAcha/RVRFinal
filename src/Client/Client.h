@@ -5,6 +5,7 @@
 
 class Game;
 class Input;
+class Message;
 
 class Client{
 public:
@@ -28,6 +29,8 @@ public:
 
     void sendReady();
     void sendInput();
+
+    void sendMessage(Message msg);
 
     bool getInput();
 

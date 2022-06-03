@@ -44,6 +44,8 @@ int main()
         exit = !client.getInput();
         client.sendInput();
 
+        game.updateGObjs();
+
         game.renderGObjs();
     }
     

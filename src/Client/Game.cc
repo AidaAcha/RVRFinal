@@ -72,11 +72,16 @@ void Game::renderGObjs(){
     sdlApp->renderPresent();
 }
 
+void Game::updateGObjs(){
+    for(int i = 0; i < gObjs.size(); i++)
+        gObjs[i]->update();
+}
+
 void Game::tryCreateBullet(Message msg){
     if(msg.bulletNum >= 0 && msg.bulletNum < MAX_BULLETS){
          if(!bullets[msg.bulletNum]){
             bullets[msg.bulletNum] = new ClientBullet(
-                Vector2(msg.pos.x, msg.pos.y), "./resources/bala.png", 50,50, sdlApp
+                Vector2(msg.pos.x, msg.pos.y), "./resources/bala.png", 50,50, sdlApp, msg.bulletNum
             );
                 bullets.push_back(bullets[msg.bulletNum]);
                 gObjs.push_back(bullets[msg.bulletNum]);

@@ -24,7 +24,12 @@ public:
     inline std::vector<GameObject*> getObjs() { return gObjs; };
     inline void setID(char id_) {id = id_;};
     inline char getId() {return id;};
+    
     void renderGObjs();
+    void updateGObjs();
+
+    void renderBackground() {};
+
     inline std::vector<ClientPlayer*> getPlayers() { return players; };
     inline std::vector<ClientBullet*> getBullets() { return bullets; };
     inline int getMaxBullets() {return MAX_BULLETS;};

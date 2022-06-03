@@ -31,12 +31,18 @@ public:
     SDL_Rect* getCurrentFrame() { return currentFrame; };
     SDL_Rect* getDstRect() {return dstRect;};
 
+    char getId() {return id_;};
+
+    int lives = 5;
+
 private:
     Vector2 input;
     float speed;
     ClientCannon* cannon;
     Game* g;
     Vector2 lastpos;
+
+    char id_;
 
     SDL_App* sdlApp;
     SDL_Rect* currentFrame;

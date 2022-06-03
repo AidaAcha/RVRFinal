@@ -25,6 +25,8 @@ ClientPlayer::ClientPlayer(char id, const char* text, Vector2 pos_, int width_, 
         cannon = new ClientCannon("./resources/Canon.png", Vector2(0,0), width_, height_, app_)
         : cannon = new ClientCannon("./resources/Canon2.png", Vector2(0,0), width_, height_, app_);
 
+    id_ = id;
+
     type = Type::Tank_;
     speed = 1.0f;
 
