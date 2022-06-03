@@ -10,6 +10,7 @@ Message::Message(const uint8_t typ) : type(typ) {}
 Message::Message(const uint8_t typ, InputMessage inp, char play) : type(typ), input(inp), player(play) {}
 Message::Message(const uint8_t typ, PositionMessage b, int bNum) : type(typ), bulletNum(bNum), pos(b) {}
 Message::Message(const uint8_t typ, PositionMessage p, char play) : type(typ), player(play), pos(p) {}
+Message::Message(const uint8_t typ, int bNum, char play) : type(typ), player(play), bulletNum(bNum) {}
 
 void Message::to_bin(){
     switch (type)
@@ -33,7 +34,6 @@ void Message::to_bin(){
         memcpy((void*) aux, input.toString().c_str(), sizeof(char) * (sizeof(InputMessage) + 1));
     } break;
     case DEAD:
-    case HIT: 
     case LOGOUT:
     case READYTOPLAY:
     case CONNNECTED: {
@@ -81,6 +81,18 @@ void Message::to_bin(){
 
         memcpy((void*) aux, pos.toString().c_str(), sizeof(char) * sizeof(PositionMessage) + 1);
     } break;
+    case HIT: {
+        alloc_data(sizeof(uint8_t) + sizeof(int) + sizeof(char));
+        char* aux = _data;
+
+        memcpy((void*) aux, (void*) &type, sizeof(uint8_t));
+        aux += sizeof(uint8_t);
+
+        memcpy((void*) aux, &bulletNum, sizeof(int));
+        aux += sizeof(int);
+
+        memcpy((void*) aux, &player, sizeof(char));
+    } break;
 
     default:
         break;
@@ -96,7 +108,6 @@ int Message::from_bin(char* buff){
     switch (type)
     {
     case LOGOUT:
-    case HIT:
     case DEAD:
     case READYTOPLAY:
     case CONNNECTED: {
@@ -137,6 +148,12 @@ int Message::from_bin(char* buff){
         memcpy(&string[0], aux, (sizeof(PositionMessage)+3) * sizeof(char));
 
         pos.fromString(string); delete[] string;
+    } break;
+    case HIT: {
+        memcpy(&bulletNum, aux, sizeof(int));
+        aux += sizeof(int);
+
+        memcpy(&player, aux, sizeof(char));
     } break;
     default:
         break;
