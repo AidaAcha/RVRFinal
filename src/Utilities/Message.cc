@@ -10,7 +10,7 @@ Message::Message(const uint8_t typ) : type(typ) {}
 Message::Message(const uint8_t typ, InputMessage inp, char play) : type(typ), input(inp), player(play) {}
 Message::Message(const uint8_t typ, PositionMessage b, int bNum) : type(typ), bulletNum(bNum), pos(b) {}
 Message::Message(const uint8_t typ, PositionMessage p, char play) : type(typ), player(play), pos(p) {}
-Message::Message(const uint8_t typ, int bNum, char play, int live) : type(typ), player(play), bulletNum(bNum) {}
+Message::Message(const uint8_t typ, int bNum, char play, int live) : type(typ), player(play), bulletNum(bNum), lives(live) {}
 
 void Message::to_bin(){
     switch (type)
