@@ -4,14 +4,12 @@
 #include "../Utilities/Socket.h"
 
 class Game;
+class Input;
 
 class Client{
 public:
-    Client(){};
-    ~Client(){
-        logout();
-        if(socket) delete socket;
-    }
+    Client();
+    ~Client();
     /**
      * @param s dirección del servidor
      * @param p puerto del servidor
@@ -29,6 +27,9 @@ public:
     void logout();
 
     void sendReady();
+    void sendInput();
+
+    bool getInput();
 
     /**
      *  Rutina del thread de Red. Recibe datos de la red.
@@ -55,6 +56,10 @@ private:
      * Juego del cliente
      */
     Game* game;
+    /**
+     * Manager de input
+     */
+    Input* input;
     /**
      * True cuando comienza la partida
      */

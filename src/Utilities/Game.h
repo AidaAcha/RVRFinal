@@ -16,15 +16,13 @@ public:
     Game(SDL_App* _sdlApp) : sdlApp(_sdlApp), id(-1) {};
     ~Game();
 
-    void init();
-
     void initGObjs();
-    void gameLoop();
     void addGO(GameObject* go);
     void addGOMuro(GameObject* muro);
     inline std::vector<GameObject*> getObjs() { return gObjs; };
     inline void setID(char id_) {id = id_;};
     inline char getId() {return id;};
+    void renderGObjs();
 private:
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;

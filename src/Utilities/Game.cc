@@ -9,12 +9,6 @@
 #include "SDL_events.h"
 #include "Vector2.h"
 
-void Game::init(){
-    
-    // initGObjs();
-    // gameLoop();
-}
-
 // We can add scenes instead of these if it gets bigger
 void Game::initGObjs(){
     // const char* tex = "./resources/Tank.png";
@@ -36,8 +30,6 @@ void Game::initGObjs(){
     player = new Tank(id, tex, posTank, 32, 32, sdlApp);
     player->setPosition(Vector2(400,550));
 
-
-
     const char* mapPath = "mapa.txt";
     gMapa = new Map(sdlApp);
     gMapa->LoadMap(mapPath);
@@ -51,47 +43,12 @@ void Game::addGOMuro(GameObject* go){
     murosMap.push_back(go);
 }
 
-void Game::gameLoop() {
-    bool exit = false;
+void Game::renderGObjs(){
+    for(int i = 0; i < gObjs.size(); i++)
+        gObjs[i]->render();
+    sdlApp->renderPresent();
+}
 
-    while(!exit){
-        sdlApp->clearWindow();
-        // SDL_Event event;
-        // // Handle all Events
-        // while (SDL_PollEvent(&event)) { 
-
-        SDL_Event event;
-        SDL_PollEvent(&event);
-
-        for(int i = 0; i < gObjs.size(); i++){
-            if(!exit)
-            exit = !gObjs[i]->handleInput(&event);
-        
-            gObjs[i]->update();
-
-            if(player != nullptr)
-            {
-                //Collisiones tanque con objetos
-                for(int i = 0; i < gObjs.size(); i++)
-                {
-                    if(gObjs[i]->getType() == GameObject::Type::Wall_)
-                    {
-                        if(sdlApp->intersectRects(*player->getDstRect(), *gObjs[i]->getDstRect())){
-                            player->setPosition(player->getlastPosition());
-                        }
-                    }
-                } 
-            }
-
-
-            gObjs[i]->render();
-        }
-        
-        sdlApp->renderPresent();
-        // }
-        // //handle input
-    }
-};
 
 Game::~Game(){
     for(int i = 0; i < gObjs.size(); i++)

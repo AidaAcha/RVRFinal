@@ -3,6 +3,8 @@
 #include "../Utilities/Message.h"
 #include "../Utilities/Socket.h"
 #include "../Utilities/Game.h"
+#include "../Client/Input.h"
+#include "../Utilities/InputMessage.h"
 #include <string>
 #include <unistd.h>
 #include <string.h>
@@ -11,6 +13,16 @@
 #include <thread>
 
 char Client::id = '0';
+
+Client::Client(){
+    input = new Input();
+}
+
+Client::~Client(){
+    logout();
+    if(socket) delete socket;
+    if(input) delete input;
+}
 
 
 //Initializes client's resources for connection with server
@@ -42,6 +54,16 @@ void Client::sendReady(){
     Message msg(Message::READYTOPLAY);
     socket->send(msg, *socket);
 }
+
+void Client::sendInput(){
+    Message msg(Message::INPUT, input->getInputMessage(), id);
+    socket->send(msg, *socket);
+}
+
+bool Client::getInput(){
+    return input->update();
+}
+
 
 void Client::net_thread()
 {

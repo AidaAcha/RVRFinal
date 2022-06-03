@@ -35,7 +35,16 @@ int main()
 
     while(!client.startGame());
 
-    game.gameLoop();
+    // game.gameLoop();
+    //GAME LOOP
+    bool exit = false;
+    while(!exit){
+        app->clearWindow();
+
+        exit = !client.getInput();
+        client.sendInput();
+        game.renderGObjs();
+    }
     
     
 

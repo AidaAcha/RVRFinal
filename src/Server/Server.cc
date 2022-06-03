@@ -25,7 +25,7 @@ void Server::do_messages(){
         Socket* client = new Socket(*socket);
         Message msg;
         socket->recv(msg, client);
-
+        // std::cout << "LLEGA NUEVO MENSAJE....... \n";
         if(client == nullptr)
             std::cout << "Error with client socket.\n";
 
