@@ -3,8 +3,13 @@
 
 #include "../Utilities/GameObject.h"
 
-class SDL_App;
 class Vector2;
+class Vector2;
+class SDL_Texture;
+class SDL_Rect;
+class SDL_App;
+class Game;
+
 
 class Wall : public GameObject {
 public:

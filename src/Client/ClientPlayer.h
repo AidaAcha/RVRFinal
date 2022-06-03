@@ -1,11 +1,11 @@
 #ifndef ClientPlayer_H_
 #define ClientPlayer_H_
 
-#include "./Utilities/GameObject.h"
+#include "../Utilities/GameObject.h"
 #include <vector>
 #include "ClientCannon.h"
 
-
+class Vector2;
 class SDL_Texture;
 class SDL_Rect;
 class SDL_App;

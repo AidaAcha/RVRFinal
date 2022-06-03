@@ -10,11 +10,11 @@ public:
 
     GameObject(){};
     GameObject(Vector2 pos_, int width_, int height_) : pos(pos_), width(width_), height(height_) {};
-    virtual ~GameObject();
+    virtual ~GameObject() {};
     
     virtual Type getType() {return type; };
 
-    virtual void render();
+    virtual void render() = 0;
     virtual void update() = 0;
 
     float getPosX() { return pos.x; };

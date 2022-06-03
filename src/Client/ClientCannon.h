@@ -1,13 +1,14 @@
 #ifndef ClientCannon_H_
 #define ClientCannon_H_
 
-#include "./Utilities/GameObject.h"
+#include "../Utilities/GameObject.h"
 #include <vector>
 
+class Vector2;
 class SDL_Texture;
 class SDL_Rect;
 class SDL_App;
-
+class Game;
 class ClientCannon : public GameObject {
 public:
     

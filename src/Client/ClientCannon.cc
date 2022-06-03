@@ -1,4 +1,5 @@
 #include "ClientCannon.h"
+#include "../Utilities/GameObject.h"
 #include "SDL_App.h"
 #include <SDL_image.h>
 #include <math.h>
