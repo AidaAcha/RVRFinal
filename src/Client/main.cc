@@ -26,6 +26,9 @@ int main()
     //wait connection    
     while(!client.connectedGame());
 
+    game.setID(client.getId());
+
+
     game.initGObjs();
 
     client.sendReady();

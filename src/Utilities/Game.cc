@@ -17,13 +17,30 @@ void Game::init(){
 
 // We can add scenes instead of these if it gets bigger
 void Game::initGObjs(){
+    // const char* tex = "./resources/Tank.png";
+    // Vector2 posTank(5,5);
+    // player = new Tank(id, tex, posTank, 32, 32, sdlApp);
+    // player->setPosition(Vector2(sdlApp->getWindowWidth() / 2, sdlApp->getWindowHeight() / 2));
+
+    if(id < 0 || id >= 2){
+        std::cout << "Error, player id is out bounds: "+ id + '\n';
+    }
+
     const char* tex = "./resources/Tank.png";
-    Vector2 posTank(5,5);
-    player = new Tank(tex, posTank, 32, 32, sdlApp);
-    player->setPosition(Vector2(sdlApp->getWindowWidth() / 2, sdlApp->getWindowHeight() / 2));
-    tex = "mapa.txt";
+    Vector2 posTank(0,0);
+
+    player = new Tank(id, tex, posTank, 32, 32, sdlApp);
+    player->setPosition(Vector2(400,50));
+
+    tex = "./resources/Tank2.png";
+    player = new Tank(id, tex, posTank, 32, 32, sdlApp);
+    player->setPosition(Vector2(400,550));
+
+
+
+    const char* mapPath = "mapa.txt";
     gMapa = new Map(sdlApp);
-    gMapa->LoadMap(tex);
+    gMapa->LoadMap(mapPath);
 }
 
 void Game::addGO(GameObject* go){

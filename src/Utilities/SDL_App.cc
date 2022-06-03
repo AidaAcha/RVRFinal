@@ -19,7 +19,7 @@ void SDL_App::init(Game* _game){
     SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO);  // Initialize SDL2
     IMG_Init(IMG_INIT_PNG);
 
-    windowH = 480; windowW = 640;
+    windowH = 600; windowW = 800;
 
     // Create an application window with the following settings:
     window = SDL_CreateWindow(

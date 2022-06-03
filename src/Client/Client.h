@@ -37,6 +37,7 @@ public:
 
     inline bool startGame() {return startGame_;};
     inline bool connectedGame() {return connectedGame_;};
+    inline char getId() {return id;};
 
 private:
 

@@ -13,7 +13,7 @@ class Tank;
 
 class Game {
 public:
-    Game(SDL_App* _sdlApp) : sdlApp(_sdlApp) {};
+    Game(SDL_App* _sdlApp) : sdlApp(_sdlApp), id(-1) {};
     ~Game();
 
     void init();
@@ -22,13 +22,16 @@ public:
     void gameLoop();
     void addGO(GameObject* go);
     void addGOMuro(GameObject* muro);
-    std::vector<GameObject*> getObjs() { return gObjs; };
+    inline std::vector<GameObject*> getObjs() { return gObjs; };
+    inline void setID(char id_) {id = id_;};
+    inline char getId() {return id;};
 private:
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;
     Map* gMapa;
     Tank* player;
     std::vector<GameObject*> murosMap;
+    char id;
 };
 
 #endif

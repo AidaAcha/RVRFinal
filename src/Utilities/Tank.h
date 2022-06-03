@@ -14,7 +14,7 @@ class Game;
 class Tank : public GameObject {
 public:
     
-    Tank(const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_);
+    Tank(int id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_);
     ~Tank();
 
     void update() override;

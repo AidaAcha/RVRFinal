@@ -4,10 +4,13 @@
 #include "Cannon.h"
 #include "Game.h"
 
-Tank::Tank(const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
+Tank::Tank(int id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
     GameObject(pos_, text, width_, height_, app_), lastpos(pos_) {
     ;
-    cannon = new Cannon("./resources/Canon.png", Vector2(0,0), width_, height_, app_);
+    
+    id == 0 ?
+        cannon = new Cannon("./resources/Canon.png", Vector2(0,0), width_, height_, app_)
+        : cannon = new Cannon("./resources/Canon2.png", Vector2(0,0), width_, height_, app_);
 
     type = Type::Tank_;
     speed = 1.0f;

@@ -17,7 +17,7 @@ char Client::id = '0';
 void Client::init(const char * s, const char * p, Game* g)
 {
     socket = new Socket(s, p);
-    game = g;
+    game = g; 
 
     std::thread([this](){ net_thread();}).detach();
 
