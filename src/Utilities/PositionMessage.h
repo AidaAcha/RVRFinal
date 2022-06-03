@@ -8,7 +8,7 @@ struct PositionMessage
 
     std::string toString()
     {
-        return std::to_string(x) + '\0' + std::to_string(y) + std::to_string(angle) + '\0';
+        return std::to_string(x) + '\0' + std::to_string(y) + '\0' + std::to_string(angle) + '\0';
     }
 
     void fromString(const char* string)

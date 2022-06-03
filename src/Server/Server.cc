@@ -82,6 +82,7 @@ void Server::do_messages(){
                 inputPlayers[(msg.player - '0')] = InputMessage(msg.input);
 
                 if(numInputPlayers >= MAX_PLAYERS){
+                    std::cout  << "tenemos 2 inputs \n";
                     numInputPlayers = 0;
                     allInputReceived = true;
                 }

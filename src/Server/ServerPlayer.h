@@ -14,7 +14,7 @@ class ServerCannon;
 class ServerPlayer : public GameObject
 {
 public:
-    ServerPlayer(Vector2 v, ServerGame* gam, int playerID);
+    ServerPlayer(Vector2 v, ServerGame* gam, char playerID);
     ~ServerPlayer() {};
 
     void update() override;
@@ -26,13 +26,15 @@ public:
 
     void setPosition(Vector2 pos_);
 
+    void sendPositionMessage();
+
 private:
 
     void playerHandleInput();
     void Input();
     void Move();
     
-    int id = 0; //player id
+    char id = 0; //player id
 
     ServerGame* _game = nullptr; //reference to game instance
 

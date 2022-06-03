@@ -5,6 +5,8 @@
 #include "Game.h"
 #include "../Client/Input.h"
 #include "../Utilities/InputMessage.h"
+#include "ClientPlayer.h"   
+
 #include <string>
 #include <unistd.h>
 #include <string.h>
@@ -94,13 +96,13 @@ void Client::net_thread()
 
             connectedGame_ = true;
             break;
-        case Message::PLAYERPOS:
-            /* code */
+        case Message::PLAYERPOS:{
+            ClientPlayer* player = game->getPlayers()[msg.player - '0'];
+            player->setPosition(Vector2(msg.pos.x, msg.pos.y));
+            player->setAngle(msg.pos.angle);
             break;
+        }
         case Message::BULLETPOS:
-            /* code */
-            break;
-        case Message::INPUT:
             /* code */
             break;
         case Message::DEAD:

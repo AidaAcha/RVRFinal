@@ -1,8 +1,10 @@
 #include "ServerPlayer.h"
 #include "ServerGame.h"
 #include "ServerCannon.h"
+#include "../Utilities/Message.h"
+#include "../Utilities/PositionMessage.h"
 
-ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, int playerID)
+ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, char playerID)
 :  GameObject()
 {
     sc = new ServerCannon(gam, playerID);
@@ -37,6 +39,17 @@ void ServerPlayer::update()
     {
         sc->setCShoot(true);
     }
+    
+    sendPositionMessage();
+}
+
+void ServerPlayer::sendPositionMessage(){
+    PositionMessage pMsg;
+    pMsg.x = pos.x;
+    pMsg.y = pos.y;
+    pMsg.angle = angle;
+    Message msg(Message::PLAYERPOS, pMsg, id);
+    _game->msgToClients(msg);
 }
 
 void ServerPlayer::Input()

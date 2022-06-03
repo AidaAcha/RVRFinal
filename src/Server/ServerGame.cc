@@ -32,12 +32,12 @@ void ServerGame::initPlayers()
 
     int x = 25; int y = 19;
     
-    ServerPlayer* player = new ServerPlayer(Vector2(x,y), this, 0);
+    ServerPlayer* player = new ServerPlayer(Vector2(x,y), this, '0');
     gameObjects.push_back(player);
     players.push_back(player);
 
     x = 5; y = 19;
-    player = new ServerPlayer(Vector2(x,y), this, 1);
+    player = new ServerPlayer(Vector2(x,y), this, '1');
     gameObjects.push_back(player);
     players.push_back(player);
 }

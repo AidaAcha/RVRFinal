@@ -23,6 +23,7 @@ public:
     inline void setID(char id_) {id = id_;};
     inline char getId() {return id;};
     void renderGObjs();
+    inline std::vector<ClientPlayer*> getPlayers() { return players; };
 private:
     std::vector<GameObject*> gObjs;
     SDL_App* sdlApp;

@@ -12,20 +12,6 @@
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
-/**
- *  Mensaje del protocolo de la aplicación
- *
- *  +-------------------+
- *  | Tipo: uint8_t     | 0 (login), 1 (mensaje), 2 (logout)
- *  +-------------------+
- *  | Nick: char[8]     | Nick incluido el char terminación de cadena '\0'
- *  +-------------------+
- *  |                   |
- *  | Mensaje: char[80] | Mensaje incluido el char terminación de cadena '\0'
- *  |                   |
- *  +-------------------+
- *
- */
 class Message: public Serializable
 {
 public:

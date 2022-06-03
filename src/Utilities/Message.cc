@@ -21,7 +21,7 @@ void Message::to_bin(){
     }
         break;
     case INPUT: {
-        alloc_data(sizeof(uint8_t) + sizeof(char) + (sizeof(InputMessage) + 1));
+        alloc_data(sizeof(uint8_t) + sizeof(char) * (sizeof(InputMessage) + 1));
         char* aux = _data;
 
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
@@ -30,7 +30,7 @@ void Message::to_bin(){
         memcpy((void*) aux, &player, sizeof(char));
         aux += sizeof(char);
 
-        memcpy((void*) aux, input.toString().c_str(), sizeof(char) * sizeof(InputMessage) + 1);
+        memcpy((void*) aux, input.toString().c_str(), sizeof(char) * (sizeof(InputMessage) + 1));
     } break;
     case DEAD:
     case HIT: 
@@ -46,7 +46,7 @@ void Message::to_bin(){
         memcpy((void*) aux, (void*)&player, sizeof(char));
     } break;
     case PLAYERPOS: {
-        alloc_data(sizeof(uint8_t) + sizeof(char) + (sizeof(PositionMessage) + 1));
+        alloc_data(sizeof(uint8_t) + sizeof(char) * ((sizeof(PositionMessage) + 3)));
         char* aux = _data;
 
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
@@ -55,10 +55,10 @@ void Message::to_bin(){
         memcpy((void*) aux, &player, sizeof(char));
         aux += sizeof(char);
 
-        memcpy((void*) aux, pos.toString().c_str(), sizeof(char) * sizeof(PositionMessage) + 1);
+        memcpy((void*) aux, pos.toString().c_str(), sizeof(char) * (sizeof(PositionMessage) + 3));
     } break;
     case BULLETPOS: {
-        alloc_data(sizeof(uint8_t) + sizeof(int) + (sizeof(PositionMessage) + 1));
+        alloc_data(sizeof(uint8_t) + sizeof(int) * (sizeof(PositionMessage) + 1));
         char* aux = _data;
 
         memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
@@ -112,8 +112,8 @@ int Message::from_bin(char* buff){
         memcpy(&player, aux, sizeof(char));
         aux += sizeof(char);
 
-        char* string = new char[sizeof(PositionMessage) * sizeof(char) + 1];
-        memcpy(&string[0], aux, sizeof(PositionMessage) * sizeof(char) + 1);
+        char* string = new char[(sizeof(PositionMessage) +3) * sizeof(char)];
+        memcpy(&string[0], aux, (sizeof(PositionMessage)+3) * sizeof(char));
 
         pos.fromString(string); delete[] string;
     }
