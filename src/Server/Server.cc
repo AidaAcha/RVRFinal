@@ -25,7 +25,6 @@ void Server::do_messages(){
         Socket* client = new Socket(*socket);
         Message msg;
         socket->recv(msg, client);
-        std::cout << "LLEGA NUEVO MENSAJE...\n";
 
         if(client == nullptr)
             std::cout << "Error with client socket.\n";
@@ -66,7 +65,7 @@ void Server::do_messages(){
 
                 numInputPlayers = 0;
                 endGame = true;
-                numPlayers = 0;
+                numPlayers--;
             break;
 
             case Message::READYTOPLAY: {
@@ -101,21 +100,28 @@ void Server::createThreadGame(){
     pthread_attr_t game_attr;
 
     game = new ServerGame(this);
+    
     game->init();
 
     pthread_attr_init(&game_attr);
+    
     pthread_attr_setdetachstate(&game_attr, PTHREAD_CREATE_DETACHED);
     
     int result = pthread_create(&game_t, &game_attr, PlayGame, NULL);
+
+    if(result != 0)
+        std::cout << "Error creating ServerGame thread.\n";
 }
 
 void* Server::PlayGame(void*){
-    while(!endGame && game->playerDefeat())
+    while(!endGame && !game->playerDefeat())
         if(allInputReceived){
             game->setMessageInput(inputPlayers);
             game->update();
             allInputReceived = false;
         }
+    
+    std::cout << "A player left server, game ended.\n";    
     pthread_exit(NULL);
 }
 

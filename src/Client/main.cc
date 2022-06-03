@@ -22,12 +22,15 @@ int main()
     client.init("127.0.0.1", "7777", &game);
 
     bool applicationClosed = false;
-    
+
+    //wait connection    
     while(!client.connectedGame());
 
     game.initGObjs();
 
-    //wait connection
+    client.sendReady();
+
+    while(!client.startGame());
 
     game.gameLoop();
     

@@ -61,12 +61,14 @@ void Client::net_thread()
         switch (msg.type)
         {
         case Message::START:
+            std::cout << "Server green lights START game.\n";
+
             startGame_ = true;
             break;
         case Message::CONNNECTED:
             id = msg.player;
             //init game
-            std::cout << "Client connected to server\n";
+            std::cout << "Client connected to server.\n";
 
             connectedGame_ = true;
             break;
