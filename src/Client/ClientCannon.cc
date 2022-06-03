@@ -45,6 +45,7 @@ void ClientCannon::setPosition(Vector2 pos_){
 }
 
 void ClientCannon::setAngle(double a){
+    std::cout << a << "\n";
     angle = a;
 }
 

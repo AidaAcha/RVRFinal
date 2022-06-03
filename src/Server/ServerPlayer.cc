@@ -28,17 +28,13 @@ void ServerPlayer::update()
     Input();
     Move();
 
-    if(cRight)
-    {
-        sc->setCDirR(true);
-    }
-    else if(cLeft)
-    {
-        sc->setCDirL(true);
-    }else if(cShoot)
-    {
-        sc->setCShoot(true);
-    }
+    sc->setCDirL(cLeft);
+    sc->setCDirR(cRight);
+    sc->setCShoot(cShoot);
+
+    cRight = false;
+    cLeft = false;
+    cShoot = false;
     
     sendPositionMessage();
 }
@@ -69,16 +65,13 @@ void ServerPlayer::Input()
     }else if(input->aimleft)
     {
         cLeft = true;
-        sc->setCDirL(true);
 
     }else if(input->aimright)
     {
         cRight = true;
-        sc->setCDirR(true);
     }else if(input->shoot)
     {
         cShoot = true;
-        sc->setCShoot(true);
     }
 }
 

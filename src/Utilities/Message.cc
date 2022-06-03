@@ -56,6 +56,18 @@ void Message::to_bin(){
         aux += sizeof(char);
 
         memcpy((void*) aux, pos.toString().c_str(), sizeof(char) * (sizeof(PositionMessage) + 3));
+    } break; 
+    case CANNONANGLE: {
+        alloc_data(sizeof(uint8_t) + sizeof(char) * ((sizeof(PositionMessage) + 3)));
+        char* aux = _data;
+
+        memcpy((void*) aux, (void*)&type, sizeof(uint8_t));
+        aux += sizeof(uint8_t);
+        
+        memcpy((void*) aux, &player, sizeof(char));
+        aux += sizeof(char);
+
+        memcpy((void*) aux, pos.toString().c_str(), sizeof(char) * (sizeof(PositionMessage) + 3));
     } break;
     case BULLETPOS: {
         alloc_data(sizeof(uint8_t) + sizeof(int) * (sizeof(PositionMessage) + 1));
@@ -116,7 +128,16 @@ int Message::from_bin(char* buff){
         memcpy(&string[0], aux, (sizeof(PositionMessage)+3) * sizeof(char));
 
         pos.fromString(string); delete[] string;
-    }
+    } break;
+    case CANNONANGLE:{
+        memcpy(&player, aux, sizeof(char));
+        aux += sizeof(char);
+
+        char* string = new char[(sizeof(PositionMessage) +3) * sizeof(char)];
+        memcpy(&string[0], aux, (sizeof(PositionMessage)+3) * sizeof(char));
+
+        pos.fromString(string); delete[] string;
+    } break;
     default:
         break;
     }

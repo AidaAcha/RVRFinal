@@ -20,6 +20,8 @@ public:
     void setCDirR(bool d) { cRight = d;};
     void setCShoot(bool d) { cShoot = d;};
 
+    void sendPositionMessage();
+
     void setPosition(Vector2 p) {pos = p;};
 
 private:

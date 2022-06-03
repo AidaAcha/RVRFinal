@@ -35,10 +35,10 @@ bool Input::update(){
                     inputInfo.shoot = true;
                     break;
                 case SDLK_LEFT:
-                    inputInfo.left = true;
+                    inputInfo.aimleft = true;
                     break;
                 case SDLK_RIGHT:
-                    inputInfo.right = true;
+                    inputInfo.aimright = true;
                     break;
                 default:
                     break;
@@ -63,10 +63,10 @@ bool Input::update(){
                     inputInfo.shoot = false;
                     break;
                 case SDLK_LEFT:
-                    inputInfo.left = false;
+                    inputInfo.aimleft = false;
                     break;
                 case SDLK_RIGHT:
-                    inputInfo.right = false;
+                    inputInfo.aimright = false;
                     break;
                 default:
                     break;

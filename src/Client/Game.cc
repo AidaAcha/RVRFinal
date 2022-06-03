@@ -11,27 +11,41 @@
 
 // We can add scenes instead of these if it gets bigger
 void Game::initGObjs(){
-    // const char* tex = "./resources/Tank.png";
-    // Vector2 posTank(5,5);
-    // player = new Tank(id, tex, posTank, 32, 32, sdlApp);
-    // player->setPosition(Vector2(sdlApp->getWindowWidth() / 2, sdlApp->getWindowHeight() / 2));
 
     if(id < 0 || id >= 2){
         std::cout << "Error, player id is out bounds: "+ id + '\n';
     }
 
-    Vector2 posTank(400,50);
 
-    ClientPlayer* player1 =  new ClientPlayer(id, "./resources/Tank.png", posTank, 32, 32, sdlApp); 
+
+    if(id == '0'){
+
+    Vector2 posTank(400,50);
+    
+    ClientPlayer* player1 =  new ClientPlayer('0', "./resources/Tank.png", posTank, 32, 32, sdlApp); 
     players.push_back(player1);
     gObjs.push_back(player1);
 
     posTank = Vector2(400,550);
-    
-    ClientPlayer* player2 =  new ClientPlayer(id, "./resources/Tank2.png", posTank, 32, 32, sdlApp);     
+
+    ClientPlayer* player2 =  new ClientPlayer('1', "./resources/Tank2.png", posTank, 32, 32, sdlApp);     
     players.push_back(player2);
     gObjs.push_back(player2);
+    
+    } else {
+    Vector2 posTank(400,550);
+    
+    ClientPlayer* player1 =  new ClientPlayer('1', "./resources/Tank2.png", posTank, 32, 32, sdlApp); 
+    players.push_back(player1);
+    gObjs.push_back(player1);
 
+    posTank = Vector2(400,50);
+
+    ClientPlayer* player2 =  new ClientPlayer('0', "./resources/Tank.png", posTank, 32, 32, sdlApp);     
+    players.push_back(player2);
+    gObjs.push_back(player2);
+    }
+    
     gMapa = new Map(sdlApp);
     gMapa->LoadMap("mapa.txt");
 }

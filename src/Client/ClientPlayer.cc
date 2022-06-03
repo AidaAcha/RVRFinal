@@ -5,7 +5,7 @@
 #include "ClientCannon.h"
 #include "Game.h"
 
-ClientPlayer::ClientPlayer(int id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
+ClientPlayer::ClientPlayer(char id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_) : 
     GameObject(), lastpos(pos_), sdlApp(app_) 
     {
     pos = pos_;
@@ -21,7 +21,7 @@ ClientPlayer::ClientPlayer(int id, const char* text, Vector2 pos_, int width_, i
     currentFrame->w = textW;
     currentFrame->h = textH;
     
-    id == 0 ?
+    id == '0' ?
         cannon = new ClientCannon("./resources/Canon.png", Vector2(0,0), width_, height_, app_)
         : cannon = new ClientCannon("./resources/Canon2.png", Vector2(0,0), width_, height_, app_);
 
@@ -48,10 +48,12 @@ void ClientPlayer::render()
     dstRect->h = height;
 
     SDL_RenderCopyEx(sdlApp->getRenderer(), tex, currentFrame, dstRect, angle, NULL, SDL_FLIP_NONE);
+    cannon->render();
 }
 
 void ClientPlayer::setPosition(Vector2 pos_){
     pos = pos_;
+    cannon->setPosition(Vector2(pos.x, pos.y - height / 3));
 }
 
 ClientPlayer::~ClientPlayer(){

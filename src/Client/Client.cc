@@ -102,6 +102,10 @@ void Client::net_thread()
             player->setAngle(msg.pos.angle);
             break;
         }
+        case Message::CANNONANGLE:{
+            ClientPlayer* player = game->getPlayers()[msg.player - '0'];
+            player->setCannonAngle(msg.pos.angle);
+        } break;
         case Message::BULLETPOS:
             /* code */
             break;

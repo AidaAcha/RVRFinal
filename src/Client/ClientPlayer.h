@@ -14,15 +14,18 @@ class Game;
 class ClientPlayer : public GameObject {
 public:
     
-    ClientPlayer(int id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_);
+    ClientPlayer(char id, const char* text, Vector2 pos_, int width_, int height_, SDL_App* app_);
     ~ClientPlayer();
 
     void update() override;
     
     void render() override;
     void setPosition(Vector2 pos_);
+
     void lookAtDirection(Vector2 dir) override {};
     Vector2 getlastPosition() { return lastpos; };
+
+    void setCannonAngle(double a) {cannon->setAngle(a);};
 
     SDL_Texture* getTex() { return tex; };
     SDL_Rect* getCurrentFrame() { return currentFrame; };

@@ -30,14 +30,15 @@ void ServerGame::initPlayers()
 {
     players.reserve(2);
 
-    int x = 25; int y = 19;
+    Vector2 posTank = Vector2(400,50);
     
-    ServerPlayer* player = new ServerPlayer(Vector2(x,y), this, '0');
+    ServerPlayer* player = new ServerPlayer(posTank, this, '0');
     gameObjects.push_back(player);
     players.push_back(player);
 
-    x = 5; y = 19;
-    player = new ServerPlayer(Vector2(x,y), this, '1');
+    posTank = Vector2(400,550);
+    
+    player = new ServerPlayer(posTank, this, '1');
     gameObjects.push_back(player);
     players.push_back(player);
 }

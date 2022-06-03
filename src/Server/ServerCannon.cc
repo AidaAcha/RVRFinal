@@ -2,6 +2,8 @@
 #include "ServerGame.h"
 #include "ServerBullet.h"
 #include <math.h>
+#include "../Utilities/PositionMessage.h"
+#include "../Utilities/Message.h"
 
 ServerCannon::ServerCannon(ServerGame* gam, int c) 
 : GameObject()
@@ -44,5 +46,14 @@ void ServerCannon::update()
         cShoot = false;
     }
 
+    sendPositionMessage();
+}
 
+void ServerCannon::sendPositionMessage(){
+    PositionMessage pMsg;
+    pMsg.x = pos.x;
+    pMsg.y = pos.y;
+    pMsg.angle = angle;
+    Message msg(Message::CANNONANGLE, pMsg, id);
+    game_->msgToClients(msg);
 }
