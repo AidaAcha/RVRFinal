@@ -85,6 +85,12 @@ void Server::do_messages(){
                     numInputPlayers = 0;
                     allInputReceived = true;
                 }
+                break;
+            }
+
+            case Message::HIT:{
+                game->playerHit(msg);
+                break;
             }
         }
     }

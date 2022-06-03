@@ -30,6 +30,7 @@ public:
     void sendPositionMessage();
 
     ServerCannon* getCannon() {return sc;};
+    void setLives(int l) {lives = l;};
 
 private:
 
@@ -49,5 +50,9 @@ private:
 
     bool cLeft = false; bool cRight = false;
     bool cShoot = false;
+
+    int lives;
+
+    const int MAX_LIVES = 5;
 };
 #endif

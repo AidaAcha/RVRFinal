@@ -20,6 +20,9 @@ void ServerGame::init()
 {
     initPlayers();
     start = std::chrono::high_resolution_clock::now();
+
+    // for(int i = 0; i < 10; i++)
+    //     bullets.push_back(nullptr);
 }
 
 void ServerGame::checkBullets(){
@@ -31,15 +34,22 @@ void ServerGame::checkBullets(){
             using namespace std::chrono_literals;
             if(time_passed < 1s) continue;
             start = std::chrono::high_resolution_clock::now();
-
+            
             ServerBullet* sb = new ServerBullet(this, i, bullets.size());
             sb->setPosition(players[i]->getPosition());
             double angle = players[i]->getCannon()->getAngle();
             sb->setAngle(angle);
             sb->setDir(players[i]->getCannon()->angleToVector());
+
+            // int j = 0;
+            // while(j < 10 && bullets[j]) j++;
+            // if(j == 10) return;
+            // bullets[j] = sb;
+
             bullets.push_back(sb);
+
             gameObjects.push_back(sb);
-            std::cout << "nueva bala server \n";
+            std::cout << "new bullet \n";
         }
     }
 }
@@ -80,9 +90,31 @@ void ServerGame::addGO(GameObject* go){
     gameObjects.push_back(go);
 }
 
-//Relocates fruit once eaten, chooses new fruit location
-void ServerGame::playerHit()
-{}
+void ServerGame::playerHit(Message msg){
+    players[(msg.player - '0')]->setLives(msg.lives);
+
+    if(msg.player == '0') std::cout << "Player 0 lives: " + msg.lives + '\n';
+    else if (msg.player == '1') std::cout << "Player 1 lives: " + msg.lives + '\n';
+
+    for(int i = 0; i < gameObjects.size(); i++){
+        if(gameObjects[i] == bullets[msg.bulletNum]){
+            gameObjects.erase(gameObjects.begin() + i);
+            break;
+        }
+    }
+    bullets[msg.bulletNum] = nullptr;
+
+
+    if(msg.player > 0 && msg.player < 2){
+        if(msg.lives <= 0) {
+        //send win/lose
+        }
+        else{
+
+        }
+    }
+
+}
 
 void ServerGame::msgToClients(Message msg){
     server->msg_to_clients(msg);

@@ -20,6 +20,9 @@ ServerPlayer::ServerPlayer(Vector2 v, ServerGame* gam, char playerID)
     dir = Vector2(0,0);
     speed = 1.0;
 
+
+    lives = MAX_LIVES;
+
     _game->addGO(sc);
 }
 

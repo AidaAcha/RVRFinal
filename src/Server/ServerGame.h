@@ -31,8 +31,7 @@ public:
 
     int getBulletCount() { return bullets.size(); };
 
-    void playerHit();
-
+    void playerHit(Message msg);
 
 private: 
     void checkBullets();
